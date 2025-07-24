@@ -254,6 +254,188 @@ class TemplateGenerator {
                     { icon: "🛞", name: "Pneumatiques", description: "Montage et équilibrage", price: "20-40€" },
                     { icon: "🔍", name: "Diagnostic", description: "Contrôle technique et expertise", price: "60-90€" }
                 ]
+            },
+            boulangerie: {
+                name: "Boulangerie Artisanale",
+                icon: "🥖",
+                heroTitle: "Le goût du pain authentique",
+                heroSubtitle: "Tradition et savoir-faire depuis 3 générations",
+                ctaPrimary: "Commander",
+                ctaSecondary: "Nos produits",
+                aboutText: "Boulangerie familiale où chaque pain est façonné avec amour selon les méthodes traditionnelles françaises.",
+                services: [
+                    { icon: "🥖", name: "Pains artisanaux", description: "Baguettes, pains spéciaux, bio", price: "1-5€" },
+                    { icon: "🥐", name: "Viennoiseries", description: "Croissants, pains au chocolat", price: "1-3€" },
+                    { icon: "🎂", name: "Pâtisseries", description: "Gâteaux, tartes, éclairs", price: "3-25€" }
+                ]
+            },
+            fleuriste: {
+                name: "Fleuriste des Jardins",
+                icon: "🌸",
+                heroTitle: "Des fleurs pour chaque moment",
+                heroSubtitle: "Créations florales artisanales pour vos événements",
+                ctaPrimary: "Commander",
+                ctaSecondary: "Nos bouquets",
+                aboutText: "Artisan fleuriste créant des compositions uniques avec des fleurs fraîches et de saison.",
+                services: [
+                    { icon: "💐", name: "Bouquets", description: "Compositions personnalisées", price: "15-80€" },
+                    { icon: "🌹", name: "Mariages", description: "Décoration florale complète", price: "Sur devis" },
+                    { icon: "🎁", name: "Plantes", description: "Plantes d'intérieur et cadeaux", price: "5-50€" }
+                ]
+            },
+            photographe: {
+                name: "Studio Photo Pro",
+                icon: "📸",
+                heroTitle: "Capturez vos moments précieux",
+                heroSubtitle: "Photographie professionnelle pour particuliers et entreprises",
+                ctaPrimary: "Réserver",
+                ctaSecondary: "Portfolio",
+                aboutText: "Photographe professionnel spécialisé dans le portrait, l'événementiel et la photo corporate.",
+                services: [
+                    { icon: "👤", name: "Portrait", description: "Photos professionnelles", price: "100-300€" },
+                    { icon: "💼", name: "Corporate", description: "Photos d'entreprise", price: "200-500€" },
+                    { icon: "🎉", name: "Événements", description: "Mariages, anniversaires", price: "500-1500€" }
+                ]
+            },
+            plombier: {
+                name: "Plombier Express",
+                icon: "🚿",
+                heroTitle: "Intervention rapide 24/7",
+                heroSubtitle: "Dépannage plomberie et installation sanitaire",
+                ctaPrimary: "Urgence",
+                ctaSecondary: "Devis gratuit",
+                aboutText: "Plombier qualifié intervenant rapidement pour tous vos problèmes de plomberie et chauffage.",
+                services: [
+                    { icon: "🔧", name: "Dépannage", description: "Fuite, bouchon, réparation", price: "80-150€" },
+                    { icon: "🚿", name: "Installation", description: "Salle de bain, cuisine", price: "200-1000€" },
+                    { icon: "🔍", name: "Diagnostic", description: "Recherche de fuite", price: "120€" }
+                ]
+            },
+            electricien: {
+                name: "Électricien Pro",
+                icon: "⚡",
+                heroTitle: "Sécurité électrique garantie",
+                heroSubtitle: "Installation et dépannage électrique certifié",
+                ctaPrimary: "Devis gratuit",
+                ctaSecondary: "Nos services",
+                aboutText: "Électricien certifié pour tous travaux d'installation, rénovation et mise aux normes.",
+                services: [
+                    { icon: "🔌", name: "Installation", description: "Tableau, prises, éclairage", price: "150-500€" },
+                    { icon: "⚡", name: "Dépannage", description: "Court-circuit, panne", price: "100-200€" },
+                    { icon: "📋", name: "Mise aux normes", description: "Conformité électrique", price: "Sur devis" }
+                ]
+            },
+            cafe: {
+                name: "Café des Arts",
+                icon: "☕",
+                heroTitle: "Pause café gourmande",
+                heroSubtitle: "Cafés de spécialité et pâtisseries maison",
+                ctaPrimary: "Commander",
+                ctaSecondary: "La carte",
+                aboutText: "Café artisanal proposant des cafés de qualité et des pâtisseries faites maison dans un cadre chaleureux.",
+                services: [
+                    { icon: "☕", name: "Cafés spéciaux", description: "Espresso, cappuccino, cold brew", price: "2-5€" },
+                    { icon: "🥐", name: "Brunch", description: "Formules brunch week-end", price: "12-18€" },
+                    { icon: "🍰", name: "Pâtisseries", description: "Gâteaux faits maison", price: "3-6€" }
+                ]
+            },
+            bar: {
+                name: "Bar Le Mixologue",
+                icon: "🍹",
+                heroTitle: "Cocktails d'exception",
+                heroSubtitle: "Ambiance cosy et boissons artisanales",
+                ctaPrimary: "Réserver",
+                ctaSecondary: "Carte des cocktails",
+                aboutText: "Bar à cocktails créatif proposant des créations uniques dans une ambiance intimiste et chaleureuse.",
+                services: [
+                    { icon: "🍸", name: "Cocktails signature", description: "Créations maison", price: "8-12€" },
+                    { icon: "🍷", name: "Happy hour", description: "De 18h à 20h", price: "5-8€" },
+                    { icon: "🎵", name: "Soirées", description: "DJ et événements", price: "Entrée libre" }
+                ]
+            },
+            "boutique-chaussures": {
+                name: "Shoes Gallery",
+                icon: "👟",
+                heroTitle: "Chaussures tendance",
+                heroSubtitle: "Collection exclusive pour toute la famille",
+                ctaPrimary: "Acheter",
+                ctaSecondary: "Nouveautés",
+                aboutText: "Boutique spécialisée en chaussures tendance avec une sélection pointue des meilleures marques.",
+                services: [
+                    { icon: "👟", name: "Sneakers", description: "Marques premium et streetwear", price: "50-200€" },
+                    { icon: "👞", name: "Chaussures ville", description: "Classiques et élégants", price: "80-300€" },
+                    { icon: "👢", name: "Accessoires", description: "Chaussettes, entretien", price: "5-30€" }
+                ]
+            },
+            "vape-shop": {
+                name: "Vape Store",
+                icon: "💨",
+                heroTitle: "Vape de qualité",
+                heroSubtitle: "Cigarettes électroniques et e-liquides premium",
+                ctaPrimary: "Acheter",
+                ctaSecondary: "Conseils",
+                aboutText: "Spécialiste vape avec conseils personnalisés et produits de qualité pour vapoteurs débutants ou confirmés.",
+                services: [
+                    { icon: "💨", name: "Kits débutants", description: "Packs complets", price: "30-80€" },
+                    { icon: "🧪", name: "E-liquides", description: "Grands marques et saveurs", price: "5-20€" },
+                    { icon: "🔧", name: "Coaching", description: "Conseils et réglages", price: "Gratuit" }
+                ]
+            },
+            onglerie: {
+                name: "Nail Art Studio",
+                icon: "💅",
+                heroTitle: "Beauté des mains",
+                heroSubtitle: "Manucure et nail art professionnel",
+                ctaPrimary: "Prendre RDV",
+                ctaSecondary: "Nos prestations",
+                aboutText: "Studio de beauté spécialisé en manucure, pose de vernis et nail art créatif.",
+                services: [
+                    { icon: "💅", name: "Manucure", description: "Soin complet des mains", price: "25-40€" },
+                    { icon: "✨", name: "Pose gel", description: "Vernis semi-permanent", price: "35-50€" },
+                    { icon: "🎨", name: "Nail art", description: "Décorations personnalisées", price: "5-20€" }
+                ]
+            },
+            "accessoires-mode": {
+                name: "Fashion Accessories",
+                icon: "👜",
+                heroTitle: "Accessoires tendance",
+                heroSubtitle: "Sacs, bijoux et accessoires mode",
+                ctaPrimary: "Acheter",
+                ctaSecondary: "Collections",
+                aboutText: "Boutique d'accessoires mode proposant une sélection pointue de sacs, bijoux et accessoires tendance.",
+                services: [
+                    { icon: "👜", name: "Sacs", description: "Sacs à main et accessoires", price: "30-150€" },
+                    { icon: "💍", name: "Bijoux", description: "Bijoux fantaisie et argent", price: "10-80€" },
+                    { icon: "🧣", name: "Accessoires", description: "Écharpes, ceintures", price: "15-50€" }
+                ]
+            },
+            "accessoires-maison": {
+                name: "Home Décor",
+                icon: "🏠",
+                heroTitle: "Déco intérieure",
+                heroSubtitle: "Accessoires et décoration pour la maison",
+                ctaPrimary: "Acheter",
+                ctaSecondary: "Nouveautés",
+                aboutText: "Boutique de décoration intérieure avec des accessoires uniques pour personnaliser votre intérieur.",
+                services: [
+                    { icon: "🕯️", name: "Décoration", description: "Bougies, vases, cadres", price: "10-60€" },
+                    { icon: "🪴", name: "Plantes", description: "Plantes et pots décoratifs", price: "15-80€" },
+                    { icon: "🛋️", name: "Textiles", description: "Coussins, plaids, rideaux", price: "20-100€" }
+                ]
+            },
+            cordonnier: {
+                name: "Artisan Cordonnier",
+                icon: "👞",
+                heroTitle: "Réparation chaussures",
+                heroSubtitle: "Entretien et réparation de qualité",
+                ctaPrimary: "Déposer",
+                ctaSecondary: "Nos services",
+                aboutText: "Cordonnier artisanal proposant réparation, entretien et personnalisation de chaussures avec savoir-faire traditionnel.",
+                services: [
+                    { icon: "👞", name: "Réparation", description: "Semelles, talons, fermetures", price: "15-50€" },
+                    { icon: "✨", name: "Entretien", description: "Nettoyage et cirage", price: "10-25€" },
+                    { icon: "🎨", name: "Personnalisation", description: "Teinture et customisation", price: "20-60€" }
+                ]
             }
         };
 
