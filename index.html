@@ -1,297 +1,23 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🚀 Agent IA Premium - Templates qui VENDENT</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        
-        /* Animations premium */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
-        
-        .fade-in-up { animation: fadeInUp 0.6s ease-out; }
-        .pulse-animation { animation: pulse 2s infinite; }
-        
-        /* Phase management */
-        .phase { display: none; opacity: 0; transition: all 0.5s ease; }
-        .phase.active { display: block; opacity: 1; }
-        
-        /* Premium buttons */
-        .btn-premium {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: 600;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;
-        }
-        .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6); }
-        
-        /* Selected states */
-        .selected { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; 
-            color: white !important; transform: scale(1.05); 
-        }
-        
-        /* Cards */
-        .premium-card {
-            background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease; position: relative; overflow: hidden;
-        }
-        .premium-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-size: 300% 100%; animation: shimmer 3s ease-in-out infinite;
-        }
-        .premium-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
-        
-        /* Template preview */
-        .template-content { height: 600px; overflow-y: auto; }
-        .template-content::-webkit-scrollbar { width: 8px; }
-        .template-content::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 4px; }
-        
-        /* Loading */
-        .loading { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
-    </style>
-</head>
-<body class="bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">
-
-<!-- PHASE 1: QUESTIONNAIRE -->
-<div id="questionnaire-phase" class="phase active">
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        
-        <!-- Header -->
-        <div class="text-center mb-12 fade-in-up">
-            <h1 class="text-6xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-                🚀 Agent IA Premium
-            </h1>
-            <p class="text-2xl text-gray-600 mb-6">Créateur de templates qui font VENDRE</p>
-            <div class="flex justify-center space-x-4">
-                <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold pulse-animation">
-                    ⚡ Résultat en 60 secondes
-                </span>
-                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
-                    🎨 Qualité agence web
-                </span>
-            </div>
-        </div>
-
-        <!-- Questionnaire Steps -->
-        <div class="space-y-8">
-            
-            <!-- Step 1: Business Info -->
-            <div class="premium-card p-8">
-                <h2 class="text-3xl font-bold mb-6 flex items-center">
-                    <span class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">1</span>
-                    Votre Métier
-                </h2>
-                
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-3">🏢 Secteur d'activité</label>
-                        <select id="mainSector" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 transition-all">
-                            <option value="">Choisissez votre secteur</option>
-                            <option value="restauration">🍽️ Restauration</option>
-                            <option value="commerce">🛍️ Commerce</option>
-                            <option value="beaute">💄 Beauté & Bien-être</option>
-                            <option value="sante">🏥 Santé</option>
-                            <option value="technique">🔧 Services Techniques</option>
-                            <option value="local">📍 Services Locaux</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-3">🎯 Spécialité</label>
-                        <input type="text" id="specialty" placeholder="Ex: Pizzeria, Salon de coiffure..." 
-                               class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 transition-all">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 2: Target Audience -->
-            <div class="premium-card p-8">
-                <h2 class="text-3xl font-bold mb-6 flex items-center">
-                    <span class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">2</span>
-                    Votre Clientèle
-                </h2>
-                
-                <div class="mb-6">
-                    <label class="block text-sm font-semibold text-gray-700 mb-4">👥 Cibles principales (jusqu'à 3)</label>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <button onclick="toggleTarget('local')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">🏠</div>
-                            <div class="font-medium text-sm">Locale</div>
-                        </button>
-                        <button onclick="toggleTarget('touriste')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">🧳</div>
-                            <div class="font-medium text-sm">Touristes</div>
-                        </button>
-                        <button onclick="toggleTarget('jeune')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">🎯</div>
-                            <div class="font-medium text-sm">18-35 ans</div>
-                        </button>
-                        <button onclick="toggleTarget('famille')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">👨‍👩‍👧‍👦</div>
-                            <div class="font-medium text-sm">Familles</div>
-                        </button>
-                        <button onclick="toggleTarget('pro')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">💼</div>
-                            <div class="font-medium text-sm">Pro/B2B</div>
-                        </button>
-                        <button onclick="toggleTarget('luxe')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">💎</div>
-                            <div class="font-medium text-sm">Luxe</div>
-                        </button>
-                        <button onclick="toggleTarget('etudiants')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">🎓</div>
-                            <div class="font-medium text-sm">Étudiants</div>
-                        </button>
-                        <button onclick="toggleTarget('senior')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                            <div class="text-2xl mb-2">👴</div>
-                            <div class="font-medium text-sm">Seniors</div>
-                        </button>
-                    </div>
-                    <div class="mt-3 text-center">
-                        <span class="text-sm text-gray-500">
-                            <span id="selectedCount">0</span>/3 cibles sélectionnées
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 3: Branding -->
-            <div class="premium-card p-8">
-                <h2 class="text-3xl font-bold mb-6 flex items-center">
-                    <span class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">3</span>
-                    Votre Identité
-                </h2>
-                
-                <div class="grid md:grid-cols-2 gap-6 mb-6">
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-3">🏪 Nom de votre établissement</label>
-                        <input type="text" id="businessName" placeholder="Ex: Chez Mario, Beauty Salon..." 
-                               class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 transition-all">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-semibold text-gray-700 mb-3">💬 Slogan</label>
-                        <input type="text" id="slogan" placeholder="Ex: L'authenticité avant tout..." 
-                               class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 transition-all">
+<div class="text-sm text-gray-600">Couleurs personnalisées</div>
                     </div>
                 </div>
                 
-                <div class="mb-6">
-                    <label class="block text-sm font-semibold text-gray-700 mb-4">🎨 Style visuel</label>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        <button onclick="selectStyle('moderne')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
-                            <div class="text-3xl mb-2">⚡</div>
-                            <div class="font-semibold">Moderne</div>
-                        </button>
-                        <button onclick="selectStyle('chaleureux')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
-                            <div class="text-3xl mb-2">🔥</div>
-                            <div class="font-semibold">Chaleureux</div>
-                        </button>
-                        <button onclick="selectStyle('elegant')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
-                            <div class="text-3xl mb-2">✨</div>
-                            <div class="font-semibold">Élégant</div>
-                        </button>
-                        <button onclick="selectStyle('naturel')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
-                            <div class="text-3xl mb-2">🌿</div>
-                            <div class="font-semibold">Naturel</div>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step 4: Plan -->
-            <div class="premium-card p-8">
-                <h2 class="text-3xl font-bold mb-6 flex items-center">
-                    <span class="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">4</span>
-                    Votre Budget
-                </h2>
-                
-                <div class="grid md:grid-cols-3 gap-6">
-                    <button onclick="selectPlan('basic')" class="plan-btn p-8 bg-white border-2 border-gray-200 rounded-xl text-center hover:border-orange-300 hover:shadow-lg transition-all">
-                        <div class="text-4xl mb-4">🥉</div>
-                        <div class="font-bold text-xl mb-2">BASIC</div>
-                        <div class="text-3xl font-bold text-orange-600 mb-4">79€/mois</div>
-                        <div class="text-sm text-gray-600">Template + fonctions essentielles</div>
-                    </button>
-                    <button onclick="selectPlan('premium')" class="plan-btn p-8 bg-white border-2 border-orange-400 rounded-xl text-center hover:border-orange-500 hover:shadow-lg transition-all shadow-md">
-                        <div class="text-4xl mb-4">🥈</div>
-                        <div class="font-bold text-xl mb-2">PREMIUM</div>
-                        <div class="text-3xl font-bold text-orange-600 mb-4">199€/mois</div>
-                        <div class="text-sm text-gray-600">Solution complète</div>
-                        <div class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full mt-3">RECOMMANDÉ</div>
-                    </button>
-                    <button onclick="selectPlan('excellence')" class="plan-btn p-8 bg-white border-2 border-gray-200 rounded-xl text-center hover:border-orange-300 hover:shadow-lg transition-all">
-                        <div class="text-4xl mb-4">🥇</div>
-                        <div class="font-bold text-xl mb-2">EXCELLENCE</div>
-                        <div class="text-3xl font-bold text-orange-600 mb-4">399€/mois</div>
-                        <div class="text-sm text-gray-600">Sur-mesure premium</div>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Generate Button -->
-            <div class="text-center">
-                <button onclick="generateTemplate()" id="generateBtn" class="btn-premium text-2xl px-16 py-6 pulse-animation disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                    <i class="fas fa-magic mr-3"></i>
-                    🚀 GÉNÉRER MON TEMPLATE PREMIUM
-                </button>
-                <div class="mt-4 text-sm text-gray-600">
-                    <i class="fas fa-shield-alt mr-1"></i>Template généré en moins de 10 secondes
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- PHASE 2: TEMPLATE PREVIEW -->
-<div id="template-phase" class="phase">
-    <div class="container mx-auto px-4 py-8 max-w-7xl">
-        
-        <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-5xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
-                🎨 Votre Template Premium
-            </h1>
-            <p class="text-xl text-gray-600">Généré spécialement pour <span id="businessDisplay" class="font-bold text-purple-600"></span></p>
-        </div>
-
-        <div class="grid lg:grid-cols-4 gap-8">
-            
-            <!-- Sidebar Info -->
-            <div class="lg:col-span-1">
-                <div class="premium-card p-6 sticky top-6">
-                    <h3 class="text-xl font-bold mb-4 flex items-center">
-                        <i class="fas fa-info-circle mr-2 text-blue-600"></i>
-                        Votre Solution
-                    </h3>
-                    
-                    <div class="space-y-4">
-                        <div class="p-4 bg-blue-50 rounded-xl">
-                            <div class="font-semibold text-blue-800">Secteur</div>
-                            <div class="text-blue-600" id="sectorDisplay"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button onclick="validateSolution()" class="btn-premium text-2xl px-16 py-6 pulse-animation mb-4">
-                    <i class="fas fa-handshake mr-3"></i>JE VALIDE CETTE SOLUTION
+                <button onclick="validateSolution()" class="bg-gradient-to-r from-orange-600 to-red-600 text-white px-12 py-4 rounded-xl font-bold text-xl hover:shadow-lg transition-all pulse-animation mb-4">
+                    <i class="fas fa-handshake mr-3"></i>VALIDER CETTE SOLUTION
                 </button>
                 <div class="text-sm text-gray-600">
-                    <i class="fas fa-shield-alt mr-1"></i>Garantie satisfait ou remboursé 30 jours
+                    <i class="fas fa-shield-alt mr-1"></i>Essai gratuit 14 jours • Résiliation à tout moment
                 </div>
             </div>
         </div>
 
-        <!-- Back Button -->
-        <div class="text-center mt-8">
-            <button onclick="showTemplate()" class="bg-gray-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-gray-600 transition-all">
-                ← Retour au Template
+        <!-- Actions -->
+        <div class="text-center mt-8 space-x-4">
+            <button onclick="showOptions()" class="bg-gray-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-600 transition-all">
+                ← Modifier les Options
+            </button>
+            <button onclick="regenerateTemplates()" class="bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all">
+                <i class="fas fa-sync-alt mr-2"></i>Régénérer
             </button>
         </div>
     </div>
@@ -299,395 +25,598 @@
 
 <script>
 // Variables globales
-let appData = {
-    mainSector: '',
-    specialty: '',
-    businessName: '',
-    slogan: '',
-    visualStyle: '',
-    selectedPlan: '',
-    targetAudience: []
+let selectedBusiness = '';
+let businessData = {
+    type: '',
+    name: '',
+    city: '',
+    selectedOptions: [],
+    style: 'moderne',
+    primaryColor: '#3B82F6',
+    secondaryColor: '#1E40AF'
 };
 
-// Photos par secteur
-const sectorImages = {
-    restauration: [
-        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&h=600&fit=crop'
+// Options par métier (exhaustives)
+const businessOptions = {
+    restaurant: [
+        { id: 'menu_digital', name: 'Menu Digital Interactif', price: 8, desc: 'Menu avec photos, prix, allergènes' },
+        { id: 'reservation', name: 'Système de Réservation', price: 12, desc: 'Planning temps réel avec confirmations' },
+        { id: 'commande_ligne', name: 'Commande en Ligne', price: 15, desc: 'Click & collect, livraison' },
+        { id: 'caisse', name: 'Caisse Intégrée', price: 20, desc: 'Encaissement et tickets' },
+        { id: 'stock_ingredients', name: 'Gestion Stock Ingrédients', price: 10, desc: 'Suivi automatique des stocks' },
+        { id: 'planning_equipe', name: 'Planning Équipe', price: 8, desc: 'Gestion des horaires staff' },
+        { id: 'fidelite', name: 'Programme Fidélité', price: 6, desc: 'Points et récompenses clients' },
+        { id: 'avis_clients', name: 'Gestion Avis Clients', price: 5, desc: 'Collecte et affichage avis' },
+        { id: 'carte_vins', name: 'Carte des Vins', price: 7, desc: 'Gestion cave et accords' },
+        { id: 'menu_enfants', name: 'Menu Enfants', price: 3, desc: 'Section dédiée enfants' },
+        { id: 'allergenes', name: 'Gestion Allergènes', price: 4, desc: 'Traçabilité et alertes' },
+        { id: 'promotions', name: 'Système Promotions', price: 9, desc: 'Offres spéciales et réductions' },
+        { id: 'analytics', name: 'Statistiques Avancées', price: 12, desc: 'Rapports ventes et fréquentation' },
+        { id: 'multi_langues', name: 'Multi-langues', price: 8, desc: 'Interface en plusieurs langues' },
+        { id: 'wifi_clients', name: 'WiFi Clients', price: 5, desc: 'Accès WiFi avec page de connexion' },
+        { id: 'evenements', name: 'Gestion Événements', price: 10, desc: 'Privatisation et événements' },
+        { id: 'livraison', name: 'Livraison à Domicile', price: 18, desc: 'Intégration livreurs' },
+        { id: 'click_collect', name: 'Click & Collect', price: 8, desc: 'Commande et retrait sur place' }
     ],
-    commerce: [
-        'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop'
+    pizzeria: [
+        { id: 'menu_pizzas', name: 'Menu Pizzas Interactif', price: 10, desc: 'Personnalisation taille, ingrédients' },
+        { id: 'commande_ligne', name: 'Commande en Ligne', price: 15, desc: 'Interface de commande intuitive' },
+        { id: 'livraison', name: 'Gestion Livraison', price: 20, desc: 'Zones, délais, tracking' },
+        { id: 'click_collect', name: 'Click & Collect', price: 8, desc: 'Commande et retrait' },
+        { id: 'personnalisation', name: 'Personnalisation Pizza', price: 12, desc: 'Créateur de pizza' },
+        { id: 'promotion_combo', name: 'Promotions & Combos', price: 8, desc: 'Offres groupées' },
+        { id: 'temps_attente', name: 'Temps d\'Attente', price: 6, desc: 'Estimation temps de préparation' },
+        { id: 'fidelite', name: 'Carte Fidélité', price: 6, desc: 'Points et pizza gratuite' },
+        { id: 'planning_fours', name: 'Planning des Fours', price: 15, desc: 'Optimisation production' },
+        { id: 'stock_ingredients', name: 'Stock Ingrédients', price: 10, desc: 'Gestion pâte, fromage, etc.' },
+        { id: 'avis_clients', name: 'Avis Clients', price: 5, desc: 'Notation et commentaires' },
+        { id: 'multi_tailles', name: 'Multi-tailles', price: 4, desc: 'Gestion tailles différentes' },
+        { id: 'zone_livraison', name: 'Zones de Livraison', price: 7, desc: 'Délimitation géographique' },
+        { id: 'paiement_ligne', name: 'Paiement en Ligne', price: 12, desc: 'CB, PayPal, Chèques déjeuner' },
+        { id: 'tracking_commande', name: 'Suivi Commande', price: 9, desc: 'Statut en temps réel' }
     ],
-    beaute: [
-        'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=600&fit=crop',
-        'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop'
+    coiffeur: [
+        { id: 'planning_rdv', name: 'Planning Rendez-vous', price: 15, desc: 'Réservation en ligne automatisée' },
+        { id: 'gestion_coiffeurs', name: 'Gestion Coiffeurs', price: 12, desc: 'Planning par coiffeur/spécialité' },
+        { id: 'catalogue_coupes', name: 'Catalogue Coupes', price: 8, desc: 'Photos et descriptions coupes' },
+        { id: 'tarifs_services', name: 'Grille Tarifaire', price: 5, desc: 'Prix selon longueur, service' },
+        { id: 'fiche_client', name: 'Fiche Client', price: 10, desc: 'Historique, préférences, allergies' },
+        { id: 'stock_produits', name: 'Stock Produits', price: 9, desc: 'Shampoing, coloration, etc.' },
+        { id: 'rappel_rdv', name: 'Rappels Automatiques', price: 6, desc: 'SMS/Email de rappel' },
+        { id: 'programme_fidelite', name: 'Programme Fidélité', price: 7, desc: '10ème coupe gratuite' },
+        { id: 'conseils_beaute', name: 'Conseils Beauté', price: 5, desc: 'Tips selon type cheveux' },
+        { id: 'vente_produits', name: 'Vente Produits', price: 12, desc: 'E-commerce produits capillaires' },
+        { id: 'avant_apres', name: 'Galerie Avant/Après', price: 8, desc: 'Portfolio transformations' },
+        { id: 'colorimetre', name: 'Nuancier Couleurs', price: 6, desc: 'Palette couleurs disponibles' },
+        { id: 'temps_services', name: 'Durée Services', price: 4, desc: 'Estimation temps par prestation' },
+        { id: 'avis_clients', name: 'Avis Clients', price: 5, desc: 'Notation et témoignages' }
+    ],
+    garage: [
+        { id: 'devis_ligne', name: 'Devis en Ligne', price: 15, desc: 'Estimation selon marque/modèle' },
+        { id: 'planning_reparations', name: 'Planning Réparations', price: 12, desc: 'Gestion créneaux atelier' },
+        { id: 'diagnostic_auto', name: 'Diagnostic Automatique', price: 20, desc: 'Interface OBD, codes erreur' },
+        { id: 'fiche_vehicule', name: 'Fiche Véhicule', price: 10, desc: 'Historique entretien/réparations' },
+        { id: 'stock_pieces', name: 'Stock Pièces Détachées', price: 18, desc: 'Gestion inventaire pièces' },
+        { id: 'suivi_reparation', name: 'Suivi Réparation', price: 8, desc: 'Étapes travaux en cours' },
+        { id: 'factures_auto', name: 'Facturation Automatique', price: 12, desc: 'Génération factures détaillées' },
+        { id: 'rappel_controle', name: 'Rappel Contrôle Technique', price: 6, desc: 'Alertes échéances' },
+        { id: 'garanties', name: 'Gestion Garanties', price: 7, desc: 'Suivi garanties pièces/main d\'œuvre' },
+        { id: 'expertise', name: 'Expertise Assurance', price: 15, desc: 'Rapports d\'expertise' },
+        { id: 'geo_depannage', name: 'Géolocalisation Dépannage', price: 10, desc: 'Service dépannage mobile' },
+        { id: 'carnet_entretien', name: 'Carnet d\'Entretien Digital', price: 8, desc: 'Historique numérique' },
+        { id: 'alerte_revision', name: 'Alertes Révision', price: 5, desc: 'Rappels selon kilométrage' }
+    ],
+    boutique: [
+        { id: 'catalogue_produits', name: 'Catalogue Produits', price: 12, desc: 'Photos HD, descriptions détaillées' },
+        { id: 'gestion_tailles', name: 'Gestion Tailles/Couleurs', price: 8, desc: 'Variantes produits' },
+        { id: 'stock_temps_reel', name: 'Stock Temps Réel', price: 15, desc: 'Disponibilité instantanée' },
+        { id: 'click_collect', name: 'Click & Collect', price: 10, desc: 'Commande web, retrait magasin' },
+        { id: 'programme_vip', name: 'Programme VIP', price: 12, desc: 'Clients privilégiés, avantages' },
+        { id: 'lookbook', name: 'Lookbook Saisonnier', price: 9, desc: 'Inspiration mode, tendances' },
+        { id: 'essayage_virtuel', name: 'Essayage Virtuel', price: 25, desc: 'AR/réalité augmentée' },
+        { id: 'personal_shopper', name: 'Personal Shopper', price: 18, desc: 'Conseil style personnalisé' },
+        { id: 'alertes_stock', name: 'Alertes Stock', price: 6, desc: 'Notification réapprovisionnement' },
+        { id: 'promotions_auto', name: 'Promotions Automatiques', price: 10, desc: 'Soldes, réductions ciblées' },
+        { id: 'wishlist', name: 'Liste de Souhaits', price: 5, desc: 'Produits favoris clients' },
+        { id: 'recommandations', name: 'Recommandations IA', price: 15, desc: 'Suggestions personnalisées' },
+        { id: 'tailles_guide', name: 'Guide des Tailles', price: 4, desc: 'Correspondances tailles' },
+        { id: 'retours_echanges', name: 'Gestion Retours', price: 8, desc: 'Politique retour/échange' },
+        { id: 'carte_fidelite', name: 'Carte Fidélité', price: 7, desc: 'Points, cashback' },
+        { id: 'nouveautes', name: 'Alertes Nouveautés', price: 6, desc: 'Notification nouvelles collections' },
+        { id: 'mode_paiement', name: 'Multi-Paiements', price: 12, desc: 'CB, PayPal, Klarna, etc.' }
+    ],
+    boulangerie: [
+        { id: 'catalogue_pain', name: 'Catalogue Pains & Viennoiseries', price: 8, desc: 'Photos, ingrédients, prix' },
+        { id: 'commande_avance', name: 'Commande à l\'Avance', price: 12, desc: 'Réservation pain spéciaux' },
+        { id: 'production_jour', name: 'Production du Jour', price: 6, desc: 'Disponibilité en temps réel' },
+        { id: 'allergenes', name: 'Gestion Allergènes', price: 5, desc: 'Traçabilité gluten, lactose, etc.' },
+        { id: 'fidelite_baguette', name: 'Carte Baguette', price: 4, desc: '10 baguettes = 1 gratuite' },
+        { id: 'horaires_cuisson', name: 'Horaires de Cuisson', price: 3, desc: 'Pain chaud selon heures' },
+        { id: 'commande_fetes', name: 'Commandes Fêtes', price: 15, desc: 'Gâteaux personnalisés' },
+        { id: 'ingredients_bio', name: 'Traçabilité Bio', price: 7, desc: 'Origine ingrédients biologiques' },
+        { id: 'nutritionnel', name: 'Valeurs Nutritionnelles', price: 6, desc: 'Calories, composition' },
+        { id: 'sandwicherie', name: 'Sandwicherie', price: 10, desc: 'Sandwichs sur mesure' },
+        { id: 'click_collect', name: 'Click & Collect', price: 8, desc: 'Commande et retrait' },
+        { id: 'abonnement_pain', name: 'Abonnement Pain', price: 12, desc: 'Livraison régulière' }
+    ],
+    institut: [
+        { id: 'planning_soins', name: 'Planning Soins', price: 15, desc: 'Réservation selon type de soin' },
+        { id: 'fiche_beaute', name: 'Fiche Beauté Client', price: 12, desc: 'Type peau, historique soins' },
+        { id: 'catalogue_soins', name: 'Catalogue Soins', price: 10, desc: 'Descriptions, durées, tarifs' },
+        { id: 'diagnostic_peau', name: 'Diagnostic Peau', price: 18, desc: 'Analyse personnalisée' },
+        { id: 'avant_apres', name: 'Galerie Avant/Après', price: 8, desc: 'Résultats transformations' },
+        { id: 'produits_conseilles', name: 'Produits Conseillés', price: 10, desc: 'Recommandations personnalisées' },
+        { id: 'forfaits_soins', name: 'Forfaits Soins', price: 12, desc: 'Packages multi-séances' },
+        { id: 'rappel_rdv', name: 'Rappels RDV', price: 6, desc: 'SMS/Email automatiques' },
+        { id: 'tendances_beaute', name: 'Tendances Beauté', price: 7, desc: 'Actualités, conseils saison' },
+        { id: 'programme_fidelite', name: 'Programme Fidélité', price: 8, desc: 'Points, soins gratuits' },
+        { id: 'certification_bio', name: 'Certifications Bio', price: 5, desc: 'Labels produits naturels' },
+        { id: 'equipe_esthetiques', name: 'Équipe Esthéticiennes', price: 6, desc: 'Profils, spécialités' },
+        { id: 'conseils_maison', name: 'Conseils Maison', price: 4, desc: 'Routine beauté quotidienne' },
+        { id: 'reservation_duo', name: 'Réservation Duo/Groupe', price: 9, desc: 'Soins entre amies' },
+        { id: 'carte_cadeau', name: 'Carte Cadeau', price: 8, desc: 'Bons cadeaux personnalisés' },
+        { id: 'suivi_resultats', name: 'Suivi Résultats', price: 10, desc: 'Photos évolution, conseils' }
+    ],
+    pharmacie: [
+        { id: 'stock_medicaments', name: 'Stock Médicaments', price: 20, desc: 'Disponibilité temps réel' },
+        { id: 'ordonnances_ligne', name: 'Ordonnances en Ligne', price: 15, desc: 'Envoi photo ordonnance' },
+        { id: 'rappel_medicaments', name: 'Rappel Prise Médicaments', price: 8, desc: 'Alertes horaires' },
+        { id: 'dossier_patient', name: 'Dossier Patient', price: 18, desc: 'Historique, allergies, interactions' },
+        { id: 'generiques', name: 'Propositions Génériques', price: 6, desc: 'Alternatives moins chères' },
+        { id: 'garde_pharmacie', name: 'Pharmacies de Garde', price: 5, desc: 'Localisation urgences' },
+        { id: 'conseil_sante', name: 'Conseils Santé', price: 7, desc: 'Fiches pathologies courantes' },
+        { id: 'parapharmacie', name: 'Parapharmacie', price: 12, desc: 'Cosmétiques, compléments' },
+        { id: 'tiers_payant', name: 'Tiers Payant', price: 15, desc: 'Gestion remboursements' },
+        { id: 'vaccination', name: 'Suivi Vaccination', price: 10, desc: 'Calendrier vaccinal' },
+        { id: 'click_collect', name: 'Click & Collect', price: 8, desc: 'Préparation commandes' }
+    ],
+    pressing: [
+        { id: 'systeme_tickets', name: 'Système Tickets', price: 10, desc: 'QR codes, étiquetage' },
+        { id: 'tarifs_services', name: 'Grille Tarifaire', price: 5, desc: 'Prix selon vêtement/service' },
+        { id: 'suivi_vetements', name: 'Suivi Vêtements', price: 12, desc: 'Étapes nettoyage en cours' },
+        { id: 'notification_pret', name: 'Notification Prêt', price: 6, desc: 'SMS/Email quand prêt' },
+        { id: 'collecte_domicile', name: 'Collecte à Domicile', price: 15, desc: 'Service de ramassage' },
+        { id: 'urgences', name: 'Service Urgences', price: 8, desc: 'Nettoyage express 24h' },
+        { id: 'retouches', name: 'Retouches Couture', price: 12, desc: 'Ourlets, réparations' },
+        { id: 'specialites', name: 'Spécialités Textiles', price: 10, desc: 'Cuir, fourrure, mariage' },
+        { id: 'carte_fidelite', name: 'Carte Fidélité', price: 6, desc: '10ème nettoyage gratuit' }
+    ],
+    opticien: [
+        { id: 'catalogue_montures', name: 'Catalogue Montures', price: 12, desc: 'Photos 360°, essayage virtuel' },
+        { id: 'ordonnance_ligne', name: 'Ordonnance en Ligne', price: 8, desc: 'Upload prescription' },
+        { id: 'essayage_virtuel', name: 'Essayage Virtuel', price: 20, desc: 'AR pour tester montures' },
+        { id: 'verres_options', name: 'Options Verres', price: 10, desc: 'Anti-reflet, progressifs, etc.' },
+        { id: 'tiers_payant', name: 'Tiers Payant', price: 12, desc: 'Mutuelle, sécurité sociale' },
+        { id: 'controle_vue', name: 'Contrôle de Vue', price: 15, desc: 'Prise RDV ophtalmologue' },
+        { id: 'lentilles', name: 'Gestion Lentilles', price: 8, desc: 'Commande, abonnement' },
+        { id: 'garanties', name: 'Garanties Montures', price: 6, desc: 'Casse, rayures' },
+        { id: 'solaires', name: 'Lunettes Solaires', price: 9, desc: 'Collection été, prescription' },
+        { id: 'enfants', name: 'Section Enfants', price: 7, desc: 'Montures adaptées, incassables' }
+    ],
+    fleuriste: [
+        { id: 'catalogue_fleurs', name: 'Catalogue Fleurs', price: 10, desc: 'Photos saisons, disponibilités' },
+        { id: 'compositions', name: 'Compositions Personnalisées', price: 15, desc: 'Créateur de bouquets' },
+        { id: 'livraison_express', name: 'Livraison Express', price: 12, desc: 'Même jour, créneaux' },
+        { id: 'evenements', name: 'Fleurs Événements', price: 18, desc: 'Mariages, deuil, fêtes' },
+        { id: 'abonnement', name: 'Abonnement Fleurs', price: 8, desc: 'Livraison hebdo/mensuelle' },
+        { id: 'conseil_entretien', name: 'Conseils Entretien', price: 4, desc: 'Prolonger durée de vie' },
+        { id: 'plantes_vertes', name: 'Plantes Vertes', price: 8, desc: 'Intérieur, extérieur' },
+        { id: 'carte_message', name: 'Cartes & Messages', price: 3, desc: 'Personnalisation messages' }
+    ],
+    dentiste: [
+        { id: 'planning_rdv', name: 'Planning Rendez-vous', price: 15, desc: 'Créneaux selon urgence/soin' },
+        { id: 'dossier_dentaire', name: 'Dossier Dentaire', price: 18, desc: 'Historique, radios, traitements' },
+        { id: 'rappel_controle', name: 'Rappel Contrôle', price: 6, desc: 'Détartrage, check-up annuel' },
+        { id: 'devis_soins', name: 'Devis Soins', price: 10, desc: 'Estimations prothèses, implants' },
+        { id: 'urgences', name: 'Urgences Dentaires', price: 12, desc: 'Créneaux prioritaires' },
+        { id: 'tiers_payant', name: 'Tiers Payant', price: 15, desc: 'Mutuelle, CMU' },
+        { id: 'conseils_hygiene', name: 'Conseils Hygiène', price: 5, desc: 'Brossage, prévention' },
+        { id: 'orthodontie', name: 'Suivi Orthodontie', price: 12, desc: 'Appareils, ajustements' },
+        { id: 'radiologie', name: 'Radiologie Intégrée', price: 20, desc: 'Panoramiques, scanners' },
+        { id: 'pediatrie', name: 'Dentisterie Pédiatrique', price: 8, desc: 'Soins adaptés enfants' },
+        { id: 'esthetique', name: 'Dentisterie Esthétique', price: 15, desc: 'Blanchiment, facettes' },
+        { id: 'anesthesie', name: 'Gestion Anesthésie', price: 7, desc: 'Protocoles, allergies' }
     ]
 };
 
-// Fonctions de sélection
-function toggleTarget(target) {
-    const index = appData.targetAudience.indexOf(target);
-    const btn = event.target.closest('.target-btn');
+// Photos générées par IA pour chaque métier
+const businessPhotos = {
+    restaurant: [
+        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=400&h=300&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=300&fit=crop&crop=center'
+    ],
+    pizzeria: [
+        'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400&h=300&fit=crop&crop=center'
+    ],
+    coiffeur: [
+        'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=400&h=300&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1522336572468-97b06e8ef143?w=400&h=300&fit=crop&crop=center'
+    ],
+    boutique: [
+        'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=center',
+        'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=300&fit=crop&crop=center'
+    ]
+};
+
+// Fonctions principales
+function selectBusiness(business) {
+    selectedBusiness = business;
+    businessData.type = business;
     
-    if (index === -1 && appData.targetAudience.length < 3) {
-        appData.targetAudience.push(target);
-        btn.classList.add('selected');
-    } else if (index !== -1) {
-        appData.targetAudience.splice(index, 1);
-        btn.classList.remove('selected');
+    // Mettre à jour l'interface
+    document.querySelectorAll('.business-card').forEach(card => card.classList.remove('selected'));
+    event.target.closest('.business-card').classList.add('selected');
+    
+    // Afficher le formulaire d'info
+    document.getElementById('business-info').style.display = 'block';
+    document.getElementById('business-info').scrollIntoView({ behavior: 'smooth' });
+    
+    validateBusinessInfo();
+}
+
+function validateBusinessInfo() {
+    const name = document.getElementById('businessName').value;
+    const city = document.getElementById('businessCity').value;
+    const isValid = name.length > 2 && city.length > 2;
+    
+    document.getElementById('continueBtn').disabled = !isValid;
+}
+
+function showOptions() {
+    // Collecter les infos
+    businessData.name = document.getElementById('businessName').value;
+    businessData.city = document.getElementById('businessCity').value;
+    
+    // Passer à la phase options
+    showPhase('options-selection');
+    
+    // Mettre à jour l'affichage
+    document.getElementById('businessTypeDisplay').textContent = 
+        selectedBusiness.charAt(0).toUpperCase() + selectedBusiness.slice(1);
+    
+    // Générer les options
+    generateOptionsGrid();
+}
+
+function generateOptionsGrid() {
+    const options = businessOptions[selectedBusiness] || [];
+    const grid = document.getElementById('optionsGrid');
+    
+    grid.innerHTML = options.map(option => `
+        <div class="option-item" onclick="toggleOption('${option.id}', ${option.price})">
+            <div class="flex items-start justify-between mb-2">
+                <h4 class="font-semibold text-sm">${option.name}</h4>
+                <div class="text-lg font-bold text-green-600">+${option.price}€</div>
+            </div>
+            <p class="text-xs text-gray-600">${option.desc}</p>
+            <div class="mt-2 flex items-center justify-between">
+                <span class="text-xs bg-gray-100 px-2 py-1 rounded">Option métier</span>
+                <i class="fas fa-plus text-gray-400"></i>
+            </div>
+        </div>
+    `).join('');
+}
+
+function toggleOption(optionId, price) {
+    const element = event.target.closest('.option-item');
+    const index = businessData.selectedOptions.findIndex(opt => opt.id === optionId);
+    
+    if (index === -1) {
+        // Ajouter l'option
+        businessData.selectedOptions.push({ id: optionId, price: price });
+        element.classList.add('selected');
+        element.querySelector('.fa-plus').className = 'fas fa-check text-green-600';
+    } else {
+        // Retirer l'option
+        businessData.selectedOptions.splice(index, 1);
+        element.classList.remove('selected');
+        element.querySelector('.fa-check').className = 'fas fa-plus text-gray-400';
     }
     
-    updateSelectedCount();
-    validateForm();
+    updatePriceCalculator();
 }
 
-function selectStyle(style) {
-    appData.visualStyle = style;
-    document.querySelectorAll('.style-btn').forEach(btn => btn.classList.remove('selected'));
-    event.target.closest('.style-btn').classList.add('selected');
-    validateForm();
+function updatePriceCalculator() {
+    const optionsPrice = businessData.selectedOptions.reduce((sum, opt) => sum + opt.price, 0);
+    const basePrice = 19; // Template design
+    const totalPrice = optionsPrice + basePrice;
+    
+    // Mettre à jour l'affichage
+    document.getElementById('selectedCount').textContent = businessData.selectedOptions.length;
+    document.getElementById('optionsPrice').textContent = optionsPrice + '€';
+    document.getElementById('totalPrice').textContent = totalPrice + '€';
+    document.getElementById('calculatedPrice').textContent = totalPrice + '€';
+    
+    // Déterminer le plan
+    let plan = { name: 'BASIC', features: 'Template + options de base' };
+    if (totalPrice >= 60 && totalPrice < 100) {
+        plan = { name: 'PREMIUM', features: 'Solution avancée' };
+    } else if (totalPrice >= 100) {
+        plan = { name: 'PRO', features: 'Solution complète' };
+    }
+    
+    document.getElementById('planName').textContent = plan.name;
+    document.getElementById('planFeatures').textContent = plan.features;
+    
+    // Activer le bouton si au moins 1 option
+    document.getElementById('generateBtn').disabled = businessData.selectedOptions.length === 0;
 }
 
-function selectPlan(plan) {
-    appData.selectedPlan = plan;
-    document.querySelectorAll('.plan-btn').forEach(btn => btn.classList.remove('selected'));
-    event.target.closest('.plan-btn').classList.add('selected');
-    validateForm();
+function selectStyle(style, primary, secondary) {
+    businessData.style = style;
+    businessData.primaryColor = primary;
+    businessData.secondaryColor = secondary;
+    
+    // Mettre à jour les color pickers
+    document.getElementById('primaryColor').value = primary;
+    document.getElementById('secondaryColor').value = secondary;
+    
+    // Mettre à jour l'interface
+    document.querySelectorAll('.style-card').forEach(card => card.classList.remove('selected'));
+    event.target.closest('.style-card').classList.add('selected');
 }
 
-function updateSelectedCount() {
-    document.getElementById('selectedCount').textContent = appData.targetAudience.length;
+function updateColors() {
+    businessData.primaryColor = document.getElementById('primaryColor').value;
+    businessData.secondaryColor = document.getElementById('secondaryColor').value;
+    
+    // Désélectionner les styles prédéfinis
+    document.querySelectorAll('.style-card').forEach(card => card.classList.remove('selected'));
 }
 
-function validateForm() {
-    const sector = document.getElementById('mainSector').value;
-    const specialty = document.getElementById('specialty').value;
-    const businessName = document.getElementById('businessName').value;
-    const hasTargets = appData.targetAudience.length > 0;
-    const hasStyle = appData.visualStyle !== '';
-    const hasPlan = appData.selectedPlan !== '';
-    
-    const isValid = sector && specialty && businessName && hasTargets && hasStyle && hasPlan;
-    document.getElementById('generateBtn').disabled = !isValid;
+function resetColors() {
+    businessData.primaryColor = '#3B82F6';
+    businessData.secondaryColor = '#1E40AF';
+    document.getElementById('primaryColor').value = '#3B82F6';
+    document.getElementById('secondaryColor').value = '#1E40AF';
 }
 
-// Génération du template
-function generateTemplate() {
-    // Collecter les données
-    appData.mainSector = document.getElementById('mainSector').value;
-    appData.specialty = document.getElementById('specialty').value;
-    appData.businessName = document.getElementById('businessName').value;
-    appData.slogan = document.getElementById('slogan').value;
+function generateTemplates() {
+    // Passer à la phase de génération
+    showPhase('templates-generated');
     
-    console.log('🎨 Génération template avec:', appData);
+    // Mettre à jour les infos finales
+    document.getElementById('finalBusinessName').textContent = businessData.name;
+    document.getElementById('finalPriceDisplay').textContent = document.getElementById('calculatedPrice').textContent;
     
-    // Passer à la phase template
-    showPhase('template');
-    
-    // Mettre à jour les informations
-    updateTemplateInfo();
-    
-    // Générer le contenu
+    // Générer les templates avec délai pour l'effet
     setTimeout(() => {
-        generateTemplateContent();
+        generateManagerTemplate();
     }, 1000);
+    
+    setTimeout(() => {
+        generateClientTemplate();
+    }, 2000);
+    
+    setTimeout(() => {
+        updateFeaturesLists();
+    }, 3000);
 }
 
-function generateTemplateContent() {
-    const colors = getColorsForStyle(appData.visualStyle);
-    const heroImage = getHeroImageForSector(appData.mainSector);
+function generateManagerTemplate() {
+    const photos = businessPhotos[selectedBusiness] || businessPhotos.restaurant;
     
-    const templateHTML = `
-        <div class="template-preview">
-            <!-- Hero Section -->
-            <div class="relative h-96 overflow-hidden">
-                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                <img src="${heroImage}" class="absolute inset-0 w-full h-full object-cover">
-                <div class="relative z-10 flex items-center justify-center h-full text-white text-center">
+    const managerHTML = `
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+            <!-- Header Manager -->
+            <div class="p-4" style="background: linear-gradient(135deg, ${businessData.primaryColor}, ${businessData.secondaryColor});">
+                <div class="flex items-center text-white">
+                    <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mr-3">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
                     <div>
-                        <h1 class="text-5xl font-bold mb-4" style="color: ${colors.primary};">
-                            ${appData.businessName}
-                        </h1>
-                        <p class="text-xl mb-6">${appData.slogan || 'Votre partenaire de confiance'}</p>
-                        <button class="px-8 py-3 rounded-lg font-semibold text-white transition-all hover:opacity-90" style="background: ${colors.secondary};">
-                            ${getCtaForSector(appData.mainSector)}
-                        </button>
+                        <h3 class="font-bold">${businessData.name} - Manager</h3>
+                        <p class="text-sm opacity-90">Interface de gestion</p>
                     </div>
                 </div>
             </div>
             
-            <!-- Services Section -->
-            <div class="py-16 bg-white">
-                <div class="container mx-auto px-4">
-                    <h2 class="text-4xl font-bold text-center mb-12" style="color: ${colors.primary};">
-                        ${getServicesTitle(appData.mainSector)}
-                    </h2>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        ${generateServiceCards(colors)}
+            <!-- Dashboard -->
+            <div class="p-4">
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                    <div class="bg-green-50 p-3 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-green-600">247</div>
+                        <div class="text-xs text-gray-600">Clients</div>
+                    </div>
+                    <div class="bg-blue-50 p-3 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-blue-600">1,2k€</div>
+                        <div class="text-xs text-gray-600">CA Jour</div>
+                    </div>
+                    <div class="bg-purple-50 p-3 rounded-lg text-center">
+                        <div class="text-2xl font-bold text-purple-600">89%</div>
+                        <div class="text-xs text-gray-600">Satisfaction</div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Features Section -->
-            <div class="py-16 bg-gray-50">
-                <div class="container mx-auto px-4">
-                    <h2 class="text-4xl font-bold text-center mb-12" style="color: ${colors.primary};">
-                        Pourquoi nous choisir ?
-                    </h2>
-                    <div class="grid md:grid-cols-4 gap-6">
-                        ${generateFeatureCards(colors)}
-                    </div>
+                
+                <!-- Navigation -->
+                <div class="space-y-2">
+                    ${getManagerNavigation()}
                 </div>
-            </div>
-            
-            <!-- Testimonials Section -->
-            <div class="py-16 bg-white">
-                <div class="container mx-auto px-4">
-                    <h2 class="text-4xl font-bold text-center mb-12" style="color: ${colors.primary};">
-                        Ils nous recommandent
-                    </h2>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        ${generateTestimonials()}
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Contact Section -->
-            <div class="py-16 bg-gray-900 text-white">
-                <div class="container mx-auto px-4 text-center">
-                    <h2 class="text-4xl font-bold mb-8" style="color: ${colors.primary};">
-                        Contactez-nous
-                    </h2>
-                    <div class="grid md:grid-cols-3 gap-8 mb-8">
-                        <div class="flex flex-col items-center">
-                            <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-4" style="background: ${colors.secondary};">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="font-semibold">Adresse</div>
-                            <div class="text-gray-300">123 Rue Example, Ville</div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-4" style="background: ${colors.secondary};">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="font-semibold">Téléphone</div>
-                            <div class="text-gray-300">01 23 45 67 89</div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-4" style="background: ${colors.secondary};">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="font-semibold">Email</div>
-                            <div class="text-gray-300">contact@${appData.businessName.toLowerCase().replace(/\s+/g, '')}.fr</div>
-                        </div>
-                    </div>
-                    <button class="px-8 py-4 rounded-lg font-semibold text-white text-lg transition-all hover:opacity-90" style="background: ${colors.primary};">
-                        <i class="fas fa-calendar mr-2"></i>Prendre Contact
+                
+                <!-- Quick Actions -->
+                <div class="mt-4 grid grid-cols-2 gap-2">
+                    <button class="p-2 rounded-lg text-white text-sm font-semibold" style="background: ${businessData.primaryColor};">
+                        <i class="fas fa-plus mr-1"></i>Nouveau
+                    </button>
+                    <button class="p-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-semibold">
+                        <i class="fas fa-chart-bar mr-1"></i>Stats
                     </button>
                 </div>
             </div>
         </div>
     `;
     
-    document.getElementById('templateContent').innerHTML = templateHTML;
+    document.getElementById('managerPreview').innerHTML = managerHTML;
 }
 
-// Fonctions utilitaires
-function getColorsForStyle(style) {
-    const colorSchemes = {
-        moderne: { primary: '#3B82F6', secondary: '#8B5CF6' },
-        chaleureux: { primary: '#DC2626', secondary: '#F59E0B' },
-        elegant: { primary: '#1F2937', secondary: '#6B7280' },
-        naturel: { primary: '#059669', secondary: '#10B981' }
-    };
-    return colorSchemes[style] || colorSchemes.moderne;
-}
-
-function getHeroImageForSector(sector) {
-    return sectorImages[sector] ? sectorImages[sector][0] : 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop';
-}
-
-function getCtaForSector(sector) {
-    const ctas = {
-        restauration: 'Réserver une Table',
-        commerce: 'Découvrir la Collection',
-        beaute: 'Prendre Rendez-vous',
-        sante: 'Consulter',
-        technique: 'Demander un Devis',
-        local: 'Nous Contacter'
-    };
-    return ctas[sector] || 'En Savoir Plus';
-}
-
-function getServicesTitle(sector) {
-    const titles = {
-        restauration: 'Notre Carte',
-        commerce: 'Nos Produits',
-        beaute: 'Nos Soins',
-        sante: 'Nos Services',
-        technique: 'Nos Prestations',
-        local: 'Nos Spécialités'
-    };
-    return titles[sector] || 'Nos Services';
-}
-
-function generateServiceCards(colors) {
-    const services = {
-        restauration: [
-            { icon: 'utensils', title: 'Cuisine Gastronomique', desc: 'Plats préparés avec des produits frais' },
-            { icon: 'wine-glass-alt', title: 'Cave à Vins', desc: 'Sélection de vins fins' },
-            { icon: 'concierge-bell', title: 'Service Premium', desc: 'Équipe experte à votre service' }
-        ],
-        commerce: [
-            { icon: 'shopping-bag', title: 'Dernières Tendances', desc: 'Collections renouvelées régulièrement' },
-            { icon: 'tags', title: 'Prix Attractifs', desc: 'Qualité au meilleur prix' },
-            { icon: 'truck', title: 'Livraison Rapide', desc: 'Livraison gratuite dès 50€' }
-        ],
-        beaute: [
-            { icon: 'spa', title: 'Soins Personnalisés', desc: 'Protocoles adaptés à votre peau' },
-            { icon: 'leaf', title: 'Produits Naturels', desc: 'Cosmétiques bio et naturels' },
-            { icon: 'user-md', title: 'Expertise Reconnue', desc: '15 ans d\'expérience' }
-        ]
-    };
+function generateClientTemplate() {
+    const photos = businessPhotos[selectedBusiness] || businessPhotos.restaurant;
     
-    const sectorServices = services[appData.mainSector] || services.restauration;
-    
-    return sectorServices.map(service => `
-        <div class="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all">
-            <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl" style="background: ${colors.secondary};">
-                <i class="fas fa-${service.icon}"></i>
+    const clientHTML = `
+        <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+            <!-- Hero Section -->
+            <div class="relative h-32 overflow-hidden">
+                <img src="${photos[0]}" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                <div class="absolute inset-0 flex items-center justify-center text-white text-center">
+                    <div>
+                        <h2 class="text-lg font-bold">${businessData.name}</h2>
+                        <p class="text-sm opacity-90">${businessData.city}</p>
+                    </div>
+                </div>
             </div>
-            <h3 class="text-xl font-bold mb-4">${service.title}</h3>
-            <p class="text-gray-600">${service.desc}</p>
+            
+            <!-- Main Content -->
+            <div class="p-4">
+                <!-- Quick Actions -->
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <button class="p-3 rounded-lg text-white font-semibold text-sm" style="background: ${businessData.primaryColor};">
+                        <i class="fas fa-${getClientMainIcon()} mr-2"></i>
+                        ${getClientMainAction()}
+                    </button>
+                    <button class="p-3 border-2 rounded-lg font-semibold text-sm" style="border-color: ${businessData.secondaryColor}; color: ${businessData.secondaryColor};">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Infos
+                    </button>
+                </div>
+                
+                <!-- Features Grid -->
+                <div class="space-y-2">
+                    ${getClientFeaturesList()}
+                </div>
+                
+                <!-- Contact -->
+                <div class="mt-4 p-3 bg-gray-50 rounded-lg">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>${businessData.city}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('clientPreview').innerHTML = clientHTML;
+}
+
+function getManagerNavigation() {
+    const navItems = {
+        restaurant: ['Dashboard', 'Réservations', 'Menu', 'Commandes', 'Stock', 'Équipe', 'Analytics'],
+        pizzeria: ['Dashboard', 'Commandes', 'Menu Pizzas', 'Livraisons', 'Stock', 'Analytics'],
+        coiffeur: ['Dashboard', 'Rendez-vous', 'Clients', 'Services', 'Équipe', 'Stock', 'Analytics'],
+        garage: ['Dashboard', 'Réparations', 'Devis', 'Véhicules', 'Stock Pièces', 'Planning'],
+        boutique: ['Dashboard', 'Produits', 'Commandes', 'Stock', 'Clients', 'Promotions'],
+        institut: ['Dashboard', 'Rendez-vous', 'Clients', 'Soins', 'Produits', 'Analytics']
+    };
+    
+    const items = navItems[selectedBusiness] || navItems.restaurant;
+    
+    return items.slice(0, 6).map(item => `
+        <div class="flex items-center p-2 hover:bg-gray-50 rounded text-sm">
+            <i class="fas fa-chevron-right mr-3 text-gray-400"></i>
+            <span>${item}</span>
         </div>
     `).join('');
 }
 
-function generateFeatureCards(colors) {
-    const features = [
-        { icon: 'clock', title: 'Rapidité', desc: 'Service express' },
-        { icon: 'shield-alt', title: 'Qualité', desc: 'Garantie satisfaction' },
-        { icon: 'heart', title: 'Passion', desc: 'Amour du métier' },
-        { icon: 'star', title: 'Excellence', desc: 'Note 5/5 clients' }
-    ];
-    
-    return features.map(feature => `
-        <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all">
-            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-xl" style="background: ${colors.primary};">
-                <i class="fas fa-${feature.icon}"></i>
-            </div>
-            <h4 class="font-bold mb-2">${feature.title}</h4>
-            <p class="text-sm text-gray-600">${feature.desc}</p>
-        </div>
-    `).join('');
-}
-
-function generateTestimonials() {
-    const testimonials = [
-        { name: 'Sophie M.', text: 'Service exceptionnel, je recommande !', rating: 5 },
-        { name: 'Pierre D.', text: 'Qualité irréprochable, équipe top !', rating: 5 },
-        { name: 'Marie L.', text: 'Une expérience formidable !', rating: 5 }
-    ];
-    
-    return testimonials.map(testimonial => `
-        <div class="text-center p-6 bg-gray-50 rounded-xl">
-            <div class="flex justify-center mb-4">
-                ${Array(testimonial.rating).fill().map(() => '<i class="fas fa-star text-yellow-400"></i>').join('')}
-            </div>
-            <p class="text-gray-700 italic mb-4">"${testimonial.text}"</p>
-            <div class="font-semibold">${testimonial.name}</div>
-        </div>
-    `).join('');
-}
-
-// Navigation entre phases
-function showPhase(phase) {
-    document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
-    setTimeout(() => {
-        document.getElementById(`${phase}-phase`).classList.add('active');
-    }, 100);
-}
-
-function showTemplate() {
-    showPhase('template');
-}
-
-function showApps() {
-    showPhase('apps');
-    generateAppsContent();
-}
-
-function updateTemplateInfo() {
-    document.getElementById('businessDisplay').textContent = appData.businessName;
-    document.getElementById('sectorDisplay').textContent = appData.mainSector;
-    document.getElementById('styleDisplay').textContent = appData.visualStyle;
-    document.getElementById('planDisplay').textContent = appData.selectedPlan.toUpperCase();
-    document.getElementById('targetDisplay').textContent = appData.targetAudience.join(', ');
-}
-
-function generateAppsContent() {
-    const managerFeatures = getManagerFeatures(appData.mainSector);
-    const clientFeatures = getClientFeatures(appData.mainSector);
-    
-    document.getElementById('managerAppName').textContent = `${appData.specialty} Manager`;
-    document.getElementById('clientAppName').textContent = `${appData.businessName} App`;
-    
-    document.getElementById('managerFeatures').innerHTML = managerFeatures.map((feature, index) => `
-        <div class="flex items-center">
-            <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center mr-3">
-                ${index + 1}
-            </div>
-            <span>${feature}</span>
-        </div>
-    `).join('');
-    
-    document.getElementById('clientFeatures').innerHTML = clientFeatures.map((feature, index) => `
-        <div class="flex items-center">
-            <div class="w-8 h-8 rounded-full bg-green-600 text-white text-sm font-bold flex items-center justify-center mr-3">
-                ${index + 1}
-            </div>
-            <span>${feature}</span>
-        </div>
-    `).join('');
-    
-    const prices = { basic: '79€/mois', premium: '199€/mois', excellence: '399€/mois' };
-    document.getElementById('finalPrice').textContent = prices[appData.selectedPlan];
-}
-
-function getManagerFeatures(sector) {
-    const features = {
-        restauration: ['Dashboard ventes', 'Gestion menu', 'Planning réservations', 'Suivi commandes', 'Analytics clients'],
-        commerce: ['Inventory management', 'Gestion commandes', 'CRM clients', 'Analytics ventes', 'Gestion promotions'],
-        beaute: ['Planning RDV', 'Gestion clients', 'Suivi prestations', 'Analytics revenus', 'Stock produits']
+function getClientMainIcon() {
+    const icons = {
+        restaurant: 'utensils',
+        pizzeria: 'pizza-slice',
+        coiffeur: 'cut',
+        garage: 'car',
+        boutique: 'shopping-bag',
+        institut: 'spa',
+        boulangerie: 'bread-slice',
+        pharmacie: 'pills',
+        pressing: 'tshirt',
+        opticien: 'glasses',
+        fleuriste: 'seedling',
+        dentiste: 'tooth'
     };
-    return features[sector] || features.restauration;
+    return icons[selectedBusiness] || 'store';
 }
 
-function getClientFeatures(sector) {
-    const features = {
-        restauration: ['Réservation table', 'Menu digital', 'Commande en ligne', 'Programme fidélité', 'Avis clients'],
-        commerce: ['Catalogue produits', 'Wishlist', 'Click & collect', 'Notifications', 'Programme VIP'],
-        beaute: ['Prise RDV', 'Profil beauté', 'Historique soins', 'Conseils personnalisés', 'Galerie']
+function getClientMainAction() {
+    const actions = {
+        restaurant: 'Réserver',
+        pizzeria: 'Commander',
+        coiffeur: 'RDV',
+        garage: 'Devis',
+        boutique: 'Acheter',
+        institut: 'RDV Soin',
+        boulangerie: 'Commander',
+        pharmacie: 'Ordonnance',
+        pressing: 'Déposer',
+        opticien: 'Essayer',
+        fleuriste: 'Composer',
+        dentiste: 'RDV'
     };
-    return features[sector] || features.restauration;
+    return actions[selectedBusiness] || 'Découvrir';
 }
 
-function regenerateTemplate() {
-    document.getElementById('templateContent').innerHTML = `
-        <div class="loading h-full flex items-center justify-center">
+function getClientFeaturesList() {
+    // Prendre les 4 premières options sélectionnées
+    const selectedFeatures = businessData.selectedOptions.slice(0, 4);
+    const allOptions = businessOptions[selectedBusiness] || [];
+    
+    return selectedFeatures.map(selected => {
+        const option = allOptions.find(opt => opt.id === selected.id);
+        if (!option) return '';
+        
+        return `
+            <div class="flex items-center p-2 text-sm">
+                <i class="fas fa-check-circle mr-3 text-green-500"></i>
+                <span>${option.name}</span>
+            </div>
+        `;
+    }).join('');
+}
+
+function updateFeaturesLists() {
+    // Features Manager
+    const managerFeatures = businessData.selectedOptions.map(opt => {
+        const option = businessOptions[selectedBusiness].find(o => o.id === opt.id);
+        return option ? option.name : '';
+    }).filter(name => name).join(' • ');
+    
+    document.getElementById('managerFeatures').textContent = managerFeatures || 'Gestion de base incluse';
+    
+    // Features Client
+    const clientFeatures = businessData.selectedOptions.slice(0, 5).map(opt => {
+        const option = businessOptions[selectedBusiness].find(o => o.id === opt.id);
+        return option ? option.name : '';
+    }).filter(name => name).join(' • ');
+    
+    document.getElementById('clientFeatures').textContent = clientFeatures || 'Interface client de base';
+}
+
+function regenerateTemplates() {
+    // Remettre les loading
+    document.getElementById('managerPreview').innerHTML = `
+        <div class="generating h-64 flex items-center justify-center">
             <div class="text-center">
-                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
                 <p class="text-gray-600">Régénération...</p>
             </div>
         </div>
     `;
     
+    document.getElementById('clientPreview').innerHTML = `
+        <div class="generating h-64 flex items-center justify-center">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+                <p class="text-gray-600">Régénération...</p>
+            </div>
+        </div>
+    `;
+    
+    // Régénérer après délai
     setTimeout(() => {
-        generateTemplateContent();
+        generateManagerTemplate();
+        generateClientTemplate();
     }, 2000);
 }
 
@@ -695,85 +624,476 @@ function validateSolution() {
     // Envoyer au CRM parent
     if (window.parent !== window) {
         window.parent.postMessage({
-            type: 'AGENT_SOLUTION_VALIDATED',
-            data: appData,
-            timestamp: new Date().toISOString()
+            type: 'BUSINESS_SOLUTION_VALIDATED',
+            data: {
+                business: selectedBusiness,
+                businessData: businessData,
+                totalPrice: document.getElementById('calculatedPrice').textContent,
+                selectedOptions: businessData.selectedOptions,
+                timestamp: new Date().toISOString()
+            }
         }, '*');
     }
     
-    alert('🎉 Solution validée ! Prospect conquis par votre template premium !');
+    // Animation de succès
+    const successDiv = document.createElement('div');
+    successDiv.innerHTML = `
+        <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div class="bg-white rounded-2xl p-8 text-center max-w-md mx-4">
+                <div class="text-6xl mb-4">🎉</div>
+                <h2 class="text-2xl font-bold mb-4 text-green-600">Solution Validée !</h2>
+                <p class="text-gray-600 mb-6">Votre prospect est conquis par ces templates métier personnalisés !</p>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between">
+                        <span>Métier:</span>
+                        <span class="font-semibold capitalize">${selectedBusiness}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Options:</span>
+                        <span class="font-semibold">${businessData.selectedOptions.length}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Prix:</span>
+                        <span class="font-semibold text-green-600">${document.getElementById('calculatedPrice').textContent}</span>
+                    </div>
+                </div>
+                <button onclick="this.parentElement.parentElement.remove()" class="mt-6 bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-all">
+                    Parfait ! 🚀
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(successDiv);
+}
+
+// Navigation entre phases
+function showPhase(phaseId) {
+    document.querySelectorAll('.phase').forEach(phase => phase.classList.remove('active'));
+    setTimeout(() => {
+        document.getElementById(phaseId).classList.add('active');
+    }, 100);
 }
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', function() {
-    // Validation en temps réel
-    ['mainSector', 'specialty', 'businessName', 'slogan'].forEach(id => {
-        document.getElementById(id).addEventListener('input', validateForm);
-        document.getElementById(id).addEventListener('change', validateForm);
+    // Validation temps réel des infos business
+    ['businessName', 'businessCity'].forEach(id => {
+        document.getElementById(id).addEventListener('input', validateBusinessInfo);
     });
     
-    console.log('🚀 Agent IA Premium initialisé !');
+    console.log('🎯 Agent IA Métier initialisé !');
 });
 
 // Health check
 window.healthCheck = function() {
     return {
         status: 'healthy',
-        version: '3.0-unified',
-        timestamp: new Date().toISOString()
+        version: '4.0-business-focused',
+        timestamp: new Date().toISOString(),
+        selectedBusiness: selectedBusiness,
+        optionsCount: businessData.selectedOptions.length
     };
 };
 </script>
 
 </body>
-</html>
-                        
-                        <div class="p-4 bg-green-50 rounded-xl">
-                            <div class="font-semibold text-green-800">Style</div>
-                            <div class="text-green-600 capitalize" id="styleDisplay"></div>
-                        </div>
-                        
-                        <div class="p-4 bg-purple-50 rounded-xl">
-                            <div class="font-semibold text-purple-800">Plan</div>
-                            <div class="text-purple-600" id="planDisplay"></div>
-                        </div>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Agent IA Métier - Templates Sur-Mesure</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        
+        .fade-in { animation: fadeInUp 0.5s ease-out; }
+        .pulse-animation { animation: pulse 2s infinite; }
+        
+        /* Phase management */
+        .phase { display: none; opacity: 0; transition: all 0.3s ease; }
+        .phase.active { display: block; opacity: 1; }
+        
+        /* Cards */
+        .business-card {
+            background: white; border-radius: 16px; padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s ease;
+            border: 2px solid transparent; cursor: pointer;
+        }
+        .business-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .business-card.selected { 
+            border-color: #3B82F6; background: linear-gradient(135deg, #EFF6FF, #DBEAFE); 
+            transform: translateY(-3px) scale(1.02);
+        }
+        
+        /* Options grid */
+        .option-item {
+            background: white; border: 2px solid #E5E7EB; border-radius: 12px;
+            padding: 1rem; cursor: pointer; transition: all 0.2s ease;
+        }
+        .option-item:hover { border-color: #3B82F6; background: #F8FAFC; }
+        .option-item.selected { 
+            border-color: #10B981; background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        }
+        
+        /* Style selector */
+        .style-card {
+            background: white; border-radius: 12px; padding: 1.5rem;
+            border: 2px solid #E5E7EB; cursor: pointer; transition: all 0.3s ease;
+        }
+        .style-card:hover { border-color: #8B5CF6; transform: translateY(-2px); }
+        .style-card.selected { 
+            border-color: #8B5CF6; background: linear-gradient(135deg, #F3E8FF, #E9D5FF);
+        }
+        
+        /* Color picker */
+        .color-option {
+            width: 50px; height: 50px; border-radius: 12px; cursor: pointer;
+            border: 3px solid #E5E7EB; transition: all 0.2s ease;
+        }
+        .color-option:hover { transform: scale(1.1); }
+        .color-option.selected { border-color: #1F2937; box-shadow: 0 0 0 2px white, 0 0 0 4px #1F2937; }
+        
+        /* Price calculator */
+        .price-display {
+            background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+            border: 2px solid #F59E0B; border-radius: 16px; padding: 2rem;
+            text-align: center; position: sticky; top: 20px;
+        }
+        
+        /* Templates preview */
+        .template-preview {
+            border-radius: 12px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Loading states */
+        .generating {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%; animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-50 to-blue-50 min-h-screen">
 
-                        <div class="p-4 bg-orange-50 rounded-xl">
-                            <div class="font-semibold text-orange-800">Clientèle</div>
-                            <div class="text-orange-600" id="targetDisplay"></div>
+<!-- PHASE 1: SÉLECTION MÉTIER -->
+<div id="business-selection" class="phase active">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in">
+            <h1 class="text-5xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                🎯 Agent IA Métier
+            </h1>
+            <p class="text-xl text-gray-600 mb-6">Templates intelligents selon VOTRE métier</p>
+            <div class="inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
+                ✨ Fonctionnalités métier analysées par IA
+            </div>
+        </div>
+
+        <!-- Business Selection -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8">Quel est votre métier ?</h2>
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <!-- Restaurant -->
+                <div class="business-card" onclick="selectBusiness('restaurant')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🍽️</div>
+                        <h3 class="font-bold text-lg mb-2">Restaurant</h3>
+                        <p class="text-sm text-gray-600">Cuisine, bar, café</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            18 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pizzeria -->
+                <div class="business-card" onclick="selectBusiness('pizzeria')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🍕</div>
+                        <h3 class="font-bold text-lg mb-2">Pizzeria</h3>
+                        <p class="text-sm text-gray-600">Pizza, livraison</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            15 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Boulangerie -->
+                <div class="business-card" onclick="selectBusiness('boulangerie')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🥖</div>
+                        <h3 class="font-bold text-lg mb-2">Boulangerie</h3>
+                        <p class="text-sm text-gray-600">Pain, pâtisserie</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            12 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coiffeur -->
+                <div class="business-card" onclick="selectBusiness('coiffeur')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">✂️</div>
+                        <h3 class="font-bold text-lg mb-2">Coiffeur</h3>
+                        <p class="text-sm text-gray-600">Coupe, couleur</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            14 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Institut Beauté -->
+                <div class="business-card" onclick="selectBusiness('institut')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">💅</div>
+                        <h3 class="font-bold text-lg mb-2">Institut Beauté</h3>
+                        <p class="text-sm text-gray-600">Soins, esthétique</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            16 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Garage -->
+                <div class="business-card" onclick="selectBusiness('garage')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🔧</div>
+                        <h3 class="font-bold text-lg mb-2">Garage</h3>
+                        <p class="text-sm text-gray-600">Réparation auto</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            13 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Boutique -->
+                <div class="business-card" onclick="selectBusiness('boutique')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">👗</div>
+                        <h3 class="font-bold text-lg mb-2">Boutique</h3>
+                        <p class="text-sm text-gray-600">Vêtements, mode</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            17 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pharmacie -->
+                <div class="business-card" onclick="selectBusiness('pharmacie')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">💊</div>
+                        <h3 class="font-bold text-lg mb-2">Pharmacie</h3>
+                        <p class="text-sm text-gray-600">Médicaments, santé</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            11 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pressing -->
+                <div class="business-card" onclick="selectBusiness('pressing')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">👔</div>
+                        <h3 class="font-bold text-lg mb-2">Pressing</h3>
+                        <p class="text-sm text-gray-600">Nettoyage, retouches</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            9 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Opticien -->
+                <div class="business-card" onclick="selectBusiness('opticien')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">👓</div>
+                        <h3 class="font-bold text-lg mb-2">Opticien</h3>
+                        <p class="text-sm text-gray-600">Lunettes, lentilles</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            10 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fleuriste -->
+                <div class="business-card" onclick="selectBusiness('fleuriste')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🌸</div>
+                        <h3 class="font-bold text-lg mb-2">Fleuriste</h3>
+                        <p class="text-sm text-gray-600">Fleurs, compositions</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            8 options métier
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dentiste -->
+                <div class="business-card" onclick="selectBusiness('dentiste')">
+                    <div class="text-center">
+                        <div class="text-4xl mb-3">🦷</div>
+                        <h3 class="font-bold text-lg mb-2">Dentiste</h3>
+                        <p class="text-sm text-gray-600">Soins dentaires</p>
+                        <div class="mt-3 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                            12 options métier
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Business Info Input -->
+        <div id="business-info" class="bg-white rounded-2xl p-8 shadow-lg mb-8" style="display: none;">
+            <h3 class="text-2xl font-bold mb-6">Informations de base</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Nom de votre établissement</label>
+                    <input type="text" id="businessName" placeholder="Ex: Chez Mario, Salon Élégance..." 
+                           class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Ville</label>
+                    <input type="text" id="businessCity" placeholder="Ex: Paris, Lyon..." 
+                           class="w-full p-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 transition-all">
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <button onclick="showOptions()" id="continueBtn" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all disabled:opacity-50" disabled>
+                    Voir les Options Métier →
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PHASE 2: OPTIONS MÉTIER -->
+<div id="options-selection" class="phase">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-4">
+                <span id="businessTypeDisplay"></span> - Options Métier
+            </h1>
+            <p class="text-lg text-gray-600">Sélectionnez les fonctionnalités dont vous avez besoin</p>
+        </div>
+
+        <div class="grid lg:grid-cols-4 gap-8">
+            
+            <!-- Options Grid -->
+            <div class="lg:col-span-3">
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold">Fonctionnalités disponibles</h2>
+                        <div class="text-sm text-gray-600">
+                            <span id="selectedCount">0</span> options sélectionnées
+                        </div>
+                    </div>
+                    <div id="optionsGrid" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+                        <!-- Options générées dynamiquement -->
+                    </div>
+                </div>
+                
+                <!-- Style & Colors -->
+                <div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
+                    <h3 class="text-xl font-bold mb-4">Style & Personnalisation</h3>
+                    
+                    <!-- Style Selection -->
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Style visuel</label>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="style-card text-center" onclick="selectStyle('moderne', '#3B82F6', '#1E40AF')">
+                                <div class="w-full h-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg mb-3"></div>
+                                <div class="font-semibold text-sm">Moderne</div>
+                                <div class="text-xs text-gray-500">Bleu tech</div>
+                            </div>
+                            <div class="style-card text-center" onclick="selectStyle('chaleureux', '#DC2626', '#B91C1C')">
+                                <div class="w-full h-16 bg-gradient-to-r from-red-600 to-red-700 rounded-lg mb-3"></div>
+                                <div class="font-semibold text-sm">Chaleureux</div>
+                                <div class="text-xs text-gray-500">Rouge passion</div>
+                            </div>
+                            <div class="style-card text-center" onclick="selectStyle('naturel', '#059669', '#047857')">
+                                <div class="w-full h-16 bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-lg mb-3"></div>
+                                <div class="font-semibold text-sm">Naturel</div>
+                                <div class="text-xs text-gray-500">Vert nature</div>
+                            </div>
+                            <div class="style-card text-center" onclick="selectStyle('elegant', '#7C3AED', '#6D28D9')">
+                                <div class="w-full h-16 bg-gradient-to-r from-violet-600 to-violet-700 rounded-lg mb-3"></div>
+                                <div class="font-semibold text-sm">Élégant</div>
+                                <div class="text-xs text-gray-500">Violet premium</div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="mt-6 space-y-3">
-                        <button onclick="regenerateTemplate()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-xl font-semibold transition-all hover:shadow-lg">
-                            <i class="fas fa-sync-alt mr-2"></i>Régénérer
-                        </button>
-                        <button onclick="showApps()" class="w-full btn-premium">
-                            <i class="fas fa-arrow-right mr-2"></i>Voir les Apps
-                        </button>
+                    <!-- Custom Colors -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">Ou personnalisez vos couleurs</label>
+                        <div class="flex items-center space-x-4">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Couleur principale</label>
+                                <input type="color" id="primaryColor" value="#3B82F6" onchange="updateColors()" 
+                                       class="w-12 h-12 rounded-lg border-2 border-gray-300 cursor-pointer">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Couleur secondaire</label>
+                                <input type="color" id="secondaryColor" value="#1E40AF" onchange="updateColors()" 
+                                       class="w-12 h-12 rounded-lg border-2 border-gray-300 cursor-pointer">
+                            </div>
+                            <button onclick="resetColors()" class="text-sm text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-undo mr-1"></i>Reset
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Template Preview -->
-            <div class="lg:col-span-3">
-                <div class="premium-card">
-                    <div class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex items-center justify-between">
-                        <div class="flex items-center">
-                            <i class="fas fa-eye mr-3"></i>
-                            <span class="font-semibold">Prévisualisation Template</span>
-                        </div>
-                        <div class="text-sm opacity-75">Qualité agence web</div>
+            <!-- Price Calculator -->
+            <div class="lg:col-span-1">
+                <div class="price-display">
+                    <h3 class="text-xl font-bold mb-4">💰 Votre Devis</h3>
+                    
+                    <div class="mb-4">
+                        <div class="text-3xl font-black mb-2" id="calculatedPrice">0€</div>
+                        <div class="text-sm text-gray-600">par mois</div>
                     </div>
                     
-                    <div id="templateContent" class="template-content">
-                        <!-- Template généré ici -->
-                        <div class="loading h-full flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-600 mx-auto mb-4"></div>
-                                <p class="text-gray-600">Génération en cours...</p>
-                            </div>
+                    <div class="mb-4 text-sm">
+                        <div class="flex justify-between mb-1">
+                            <span>Fonctionnalités:</span>
+                            <span id="optionsPrice">0€</span>
                         </div>
+                        <div class="flex justify-between mb-1">
+                            <span>Template design:</span>
+                            <span>19€</span>
+                        </div>
+                        <div class="flex justify-between font-semibold border-t pt-1">
+                            <span>Total:</span>
+                            <span id="totalPrice">19€</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4 p-3 bg-white rounded-lg text-center">
+                        <div class="font-semibold text-green-600" id="planName">BASIC</div>
+                        <div class="text-xs text-gray-600" id="planFeatures">Template + options de base</div>
+                    </div>
+                    
+                    <button onclick="generateTemplates()" id="generateBtn" class="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 px-4 rounded-lg font-semibold hover:shadow-lg transition-all pulse-animation disabled:opacity-50" disabled>
+                        <i class="fas fa-magic mr-2"></i>
+                        Générer mes Templates
+                    </button>
+                    
+                    <div class="mt-3 text-xs text-gray-600 text-center">
+                        ✨ Templates Manager + Client inclus
                     </div>
                 </div>
             </div>
@@ -781,126 +1101,115 @@ window.healthCheck = function() {
     </div>
 </div>
 
-<!-- PHASE 3: APPLICATIONS -->
-<div id="apps-phase" class="phase">
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
+<!-- PHASE 3: TEMPLATES GÉNÉRÉS -->
+<div id="templates-generated" class="phase">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
         
         <!-- Header -->
-        <div class="text-center mb-12">
-            <h1 class="text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-                🚀 Vos Applications Finales
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                🎨 Vos Templates Générés
             </h1>
-            <p class="text-xl text-gray-600">Solution complète qui fait VENDRE !</p>
+            <p class="text-xl text-gray-600">Templates Manager + Client pour <span id="finalBusinessName" class="font-bold text-purple-600"></span></p>
         </div>
 
-        <!-- Solution Summary -->
-        <div class="premium-card p-8 mb-8 bg-gradient-to-r from-green-50 to-blue-50">
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Template Premium</h3>
-                    <p class="text-gray-600">Design sur-mesure professionnel</p>
-                </div>
-                <div>
-                    <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Apps Métier</h3>
-                    <p class="text-gray-600">Manager + Client synchronisés</p>
-                </div>
-                <div>
-                    <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">ROI Garanti</h3>
-                    <p class="text-gray-600">+30% de clients en moyenne</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Apps -->
+        <!-- Templates Grid -->
         <div class="grid lg:grid-cols-2 gap-8 mb-8">
             
-            <!-- Manager App -->
-            <div class="premium-card">
-                <div class="p-6 border-b bg-gradient-to-r from-blue-50 to-purple-50">
+            <!-- Template Manager -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6">
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white mr-4">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" id="managerAppName">Manager Pro</h3>
-                            <p class="text-gray-600">Interface de gestion complète</p>
+                            <h3 class="text-2xl font-bold">Template Manager</h3>
+                            <p class="opacity-90">Interface de gestion</p>
                         </div>
                     </div>
                 </div>
+                
                 <div class="p-6">
-                    <h4 class="font-bold mb-4 flex items-center">
-                        <i class="fas fa-list-check mr-2 text-blue-600"></i>
-                        Fonctionnalités Manager :
-                    </h4>
-                    <div id="managerFeatures" class="space-y-3">
-                        <!-- Généré dynamiquement -->
+                    <div id="managerPreview" class="template-preview mb-4">
+                        <!-- Template manager généré ici -->
+                        <div class="generating h-64 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                                <p class="text-gray-600">Génération template manager...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-bold mb-2 flex items-center">
+                            <i class="fas fa-cogs mr-2 text-blue-600"></i>
+                            Fonctionnalités Manager :
+                        </h4>
+                        <div id="managerFeatures" class="text-sm text-gray-600">
+                            <!-- Fonctionnalités listées dynamiquement -->
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Client App -->
-            <div class="premium-card">
-                <div class="p-6 border-b bg-gradient-to-r from-green-50 to-blue-50">
+            <!-- Template Client -->
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div class="bg-gradient-to-r from-green-600 to-teal-600 text-white p-6">
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-xl flex items-center justify-center text-white mr-4">
-                            <i class="fas fa-users"></i>
+                        <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-2xl"></i>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent" id="clientAppName">Client App</h3>
-                            <p class="text-gray-600">Experience client optimisée</p>
+                            <h3 class="text-2xl font-bold">Template Client</h3>
+                            <p class="opacity-90">Interface client</p>
                         </div>
                     </div>
                 </div>
+                
                 <div class="p-6">
-                    <h4 class="font-bold mb-4 flex items-center">
-                        <i class="fas fa-heart mr-2 text-green-600"></i>
-                        Fonctionnalités Client :
-                    </h4>
-                    <div id="clientFeatures" class="space-y-3">
-                        <!-- Généré dynamiquement -->
+                    <div id="clientPreview" class="template-preview mb-4">
+                        <!-- Template client généré ici -->
+                        <div class="generating h-64 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
+                                <p class="text-gray-600">Génération template client...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h4 class="font-bold mb-2 flex items-center">
+                            <i class="fas fa-heart mr-2 text-green-600"></i>
+                            Fonctionnalités Client :
+                        </h4>
+                        <div id="clientFeatures" class="text-sm text-gray-600">
+                            <!-- Fonctionnalités listées dynamiquement -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Final CTA -->
-        <div class="premium-card p-8 bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-200">
+        <!-- Final Summary -->
+        <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 border-2 border-orange-200">
             <div class="text-center">
-                <h2 class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-4">
-                    <i class="fas fa-crown mr-3"></i>Votre Solution Prête !
-                </h2>
-                <div class="text-5xl font-black mb-4" id="finalPrice">199€/mois</div>
-                <p class="text-lg text-gray-600 mb-8">Investissement rentabilisé en 3 semaines</p>
+                <h2 class="text-3xl font-bold mb-4">🎉 Votre Solution Complète</h2>
+                <div class="text-5xl font-black mb-4" id="finalPriceDisplay">39€/mois</div>
+                <p class="text-lg text-gray-600 mb-8">2 templates professionnels + toutes vos fonctionnalités</p>
                 
-                <div class="grid md:grid-cols-2 gap-8 mb-8">
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 text-green-600">✅ Inclus :</h3>
-                        <ul class="text-left space-y-2 text-gray-700">
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Template premium personnalisé</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>App Manager complète</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>App Client optimisée</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Hébergement sécurisé</li>
-                            <li><i class="fas fa-check text-green-500 mr-2"></i>Support 7j/7</li>
-                        </ul>
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">📱</div>
+                        <div class="font-semibold">Template Manager</div>
+                        <div class="text-sm text-gray-600">Gestion complète</div>
                     </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-4 text-blue-600">📈 ROI Attendu :</h3>
-                        <div class="space-y-3">
-                            <div class="flex justify-between p-3 bg-white rounded-lg">
-                                <span>Nouveaux clients/mois :</span>
-                                <span class="font-bold text-green-600">+25</span>
-                            </div>
-                            <div class="flex justify-between p-3 bg-white rounded-lg">
-                                <span>Augmentation CA :</span>
-                                <span class="font-bold text-blue-600">+30%</span>
-                            </div>
-                        </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">👥</div>
+                        <div class="font-semibold">Template Client</div>
+                        <div class="text-sm text-gray-600">Experience utilisateur</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl mb-2">🎨</div>
+                        <div class="font-semibold">Design Sur-Mesure</div>
+                        <div class="text-sm text-gray-600">Couleurs personn
