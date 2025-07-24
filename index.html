@@ -716,7 +716,8 @@ window.healthCheck = function() {
         dataCollected: Object.keys(premiumData).filter(key => premiumData[key] && premiumData[key] !== '').length
     };
 };
+window.location.href = 'generator.html?data=' + encodeURIComponent(JSON.stringify(premiumData));    
 </script>
-window.location.href = 'generator.html?data=' + encodeURIComponent(JSON.stringify(premiumData));
+
 </body>
 </html>
