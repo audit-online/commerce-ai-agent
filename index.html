@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Agent IA - Templates Commerce</title>
+    
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel pour JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Meta pour SEO -->
+    <meta name="description" content="Agent IA pour création de templates et applications commerce de proximité">
+    <meta name="keywords" content="AI, commerce, templates, CRM, digital">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 18px;
+            color: #6B7280;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="loading">
+            🤖 Chargement de l'Agent IA...
+        </div>
+    </div>
+    
+    <!-- Script principal de l'agent -->
+    <script type="text/babel" src="app.js"></script>
+    
+    <!-- Health check pour monitoring -->
+    <script>
+        // Endpoint de santé pour vérifier que l'app fonctionne
+        window.healthCheck = function() {
+            return {
+                status: 'healthy',
+                version: '1.0.0',
+                timestamp: new Date().toISOString()
+            };
+        };
+    </script>
+</body>
+</html>
