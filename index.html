@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur Templates Métier Pro</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- PHASE 1: Sélection métier -->
+    <div id="phase1" class="phase active">
+        <div class="container">
+            <h1>🎯 Générateur Templates Métier Pro</h1>
+            <p class="subtitle">Choisissez votre secteur d'activité</p>
+            
+            <div class="metier-grid">
+                <div class="metier-card" data-metier="restaurant">
+                    <div class="metier-icon">🍽️</div>
+                    <h3>Restaurant</h3>
+                    <p>Gastronomie & Restauration</p>
+                </div>
+                <div class="metier-card" data-metier="pizzeria">
+                    <div class="metier-icon">🍕</div>
+                    <h3>Pizzeria</h3>
+                    <p>Pizza & Fast Food</p>
+                </div>
+                <div class="metier-card" data-metier="coiffeur">
+                    <div class="metier-icon">✂️</div>
+                    <h3>Coiffeur</h3>
+                    <p>Beauté & Coiffure</p>
+                </div>
+                <div class="metier-card" data-metier="garage">
+                    <div class="metier-icon">🔧</div>
+                    <h3>Garage</h3>
+                    <p>Automobile & Mécanique</p>
+                </div>
+                <div class="metier-card" data-metier="boulangerie">
+                    <div class="metier-icon">🥖</div>
+                    <h3>Boulangerie</h3>
+                    <p>Pain & Pâtisseries</p>
+                </div>
+                <div class="metier-card" data-metier="fleuriste">
+                    <div class="metier-icon">🌸</div>
+                    <h3>Fleuriste</h3>
+                    <p>Fleurs & Arrangements</p>
+                </div>
+                <div class="metier-card" data-metier="photographe">
+                    <div class="metier-icon">📸</div>
+                    <h3>Photographe</h3>
+                    <p>Photos & Vidéos</p>
+                </div>
+                <div class="metier-card" data-metier="plombier">
+                    <div class="metier-icon">🚿</div>
+                    <h3>Plombier</h3>
+                    <p>Plomberie & Sanitaire</p>
+                </div>
+                <div class="metier-card" data-metier="electricien">
+                    <div class="metier-icon">⚡</div>
+                    <h3>Électricien</h3>
+                    <p>Électricité & Installation</p>
+                </div>
+                <div class="metier-card" data-metier="cafe">
+                    <div class="metier-icon">☕</div>
+                    <h3>Café</h3>
+                    <p>Café & Brunch</p>
+                </div>
+                <div class="metier-card" data-metier="bar">
+                    <div class="metier-icon">🍹</div>
+                    <h3>Bar</h3>
+                    <p>Cocktails & Boissons</p>
+                </div>
+                <div class="metier-card" data-metier="boutique-chaussures">
+                    <div class="metier-icon">👟</div>
+                    <h3>Boutique Chaussures</h3>
+                    <p>Chaussures & Accessoires</p>
+                </div>
+                <div class="metier-card" data-metier="vape-shop">
+                    <div class="metier-icon">💨</div>
+                    <h3>Vape Shop</h3>
+                    <p>Cigarettes électroniques</p>
+                </div>
+                <div class="metier-card" data-metier="onglerie">
+                    <div class="metier-icon">💅</div>
+                    <h3>Onglerie</h3>
+                    <p>Manucure & Beauté des mains</p>
+                </div>
+                <div class="metier-card" data-metier="accessoires-mode">
+                    <div class="metier-icon">👜</div>
+                    <h3>Accessoires Mode</h3>
+                    <p>Sacs & Bijoux</p>
+                </div>
+                <div class="metier-card" data-metier="accessoires-maison">
+                    <div class="metier-icon">🏠</div>
+                    <h3>Accessoires Maison</h3>
+                    <p>Déco & Art de vivre</p>
+                </div>
+                <div class="metier-card" data-metier="cordonnier">
+                    <div class="metier-icon">👞</div>
+                    <h3>Cordonnier</h3>
+                    <p>Réparation & Entretien chaussures</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 2: Plans tarifaires -->
+    <div id="phase2" class="phase">
+        <div class="container">
+            <h2>💎 Choisissez votre plan</h2>
+            <div class="back-btn" onclick="showPhase('phase1')">← Retour</div>
+            
+            <div class="plans-grid">
+                <div class="plan-card basic" data-plan="basic">
+                    <div class="plan-badge">BASIC</div>
+                    <div class="plan-price">39€</div>
+                    <div class="plan-features">
+                        <div class="included">✅ 5 options incluses</div>
+                        <div class="choice">🎯 3 options au choix</div>
+                    </div>
+                    <button class="plan-btn">Choisir Basic</button>
+                </div>
+                
+                <div class="plan-card premium popular" data-plan="premium">
+                    <div class="plan-badge">PREMIUM</div>
+                    <div class="popular-tag">POPULAIRE</div>
+                    <div class="plan-price">79€</div>
+                    <div class="plan-features">
+                        <div class="included">✅ 10 options incluses</div>
+                        <div class="choice">🎯 5 options au choix</div>
+                    </div>
+                    <button class="plan-btn">Choisir Premium</button>
+                </div>
+                
+                <div class="plan-card pro" data-plan="pro">
+                    <div class="plan-badge">PRO</div>
+                    <div class="plan-price">129€</div>
+                    <div class="plan-features">
+                        <div class="included">✅ TOUTES options incluses</div>
+                        <div class="choice">🚀 Accès complet</div>
+                    </div>
+                    <button class="plan-btn">Choisir Pro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 3: Configuration -->
+    <div id="phase3" class="phase">
+        <div class="container">
+            <h2>⚙️ Configuration</h2>
+            <div class="back-btn" onclick="showPhase('phase2')">← Retour</div>
+            
+            <div class="config-section">
+                <h3>Options disponibles pour votre plan <span id="current-plan"></span></h3>
+                <div id="options-container"></div>
+            </div>
+            
+            <button id="generate-btn" class="generate-btn">🚀 Générer le Template</button>
+        </div>
+    </div>
+
+    <!-- PHASE 4: Résultat -->
+    <div id="phase4" class="phase">
+        <div class="container">
+            <div class="result-header">
+                <h2>🎉 Votre Template</h2>
+                <div class="back-btn" onclick="showPhase('phase3')">← Retour</div>
+            </div>
+            
+            <div class="result-actions">
+                <button id="preview-btn" class="action-btn primary">👁️ Aperçu</button>
+                <button id="download-btn" class="action-btn">📥 Télécharger</button>
+                <button id="new-template-btn" class="action-btn">🔄 Nouveau Template</button>
+            </div>
+            
+            <div id="template-container"></div>
+        </div>
+    </div>
+
+    <script src="template.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
