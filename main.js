@@ -269,4 +269,8 @@ function showPhase(phaseId) {
 // Initialisation de l'application
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new App();
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 8af77ce266e976e2c5ccedce129ad8bc336b1477
