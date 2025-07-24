@@ -2,746 +2,905 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdn.tailwindcss.com"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 Agent IA Premium - Questionnaire Vendeur</title>
+    <title>🚀 Agent IA Premium - Templates qui VENDENT</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
-        .step { display: none; opacity: 0; transform: translateX(50px); transition: all 0.5s ease; }
-        .step.active { display: block; opacity: 1; transform: translateX(0); }
-        .question-card { transition: all 0.3s ease; }
-        .question-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .option-btn { transition: all 0.2s ease; }
-        .option-btn:hover { transform: scale(1.02); }
-        .option-btn.selected { 
+        
+        /* Animations premium */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        
+        .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+        .pulse-animation { animation: pulse 2s infinite; }
+        
+        /* Phase management */
+        .phase { display: none; opacity: 0; transition: all 0.5s ease; }
+        .phase.active { display: block; opacity: 1; }
+        
+        /* Premium buttons */
+        .btn-premium {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            transform: scale(1.05);
+            color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: 600;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); transition: all 0.3s ease;
         }
-        .progress-bar { transition: width 0.5s ease; }
-        .floating-btn { 
-            position: fixed; 
-            bottom: 30px; 
-            right: 30px; 
-            z-index: 1000;
-            animation: pulse 2s infinite;
+        .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6); }
+        
+        /* Selected states */
+        .selected { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; 
+            color: white !important; transform: scale(1.05); 
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        
+        /* Cards */
+        .premium-card {
+            background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; position: relative; overflow: hidden;
         }
-        .image-preview {
-            background-size: cover;
-            background-position: center;
-            transition: all 0.3s ease;
+        .premium-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background-size: 300% 100%; animation: shimmer 3s ease-in-out infinite;
         }
-        .image-preview:hover {
-            transform: scale(1.05);
-        }
+        .premium-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        
+        /* Template preview */
+        .template-content { height: 600px; overflow-y: auto; }
+        .template-content::-webkit-scrollbar { width: 8px; }
+        .template-content::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 4px; }
+        
+        /* Loading */
+        .loading { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
     </style>
 </head>
 <body class="bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">
 
-<!-- Progress Bar -->
-<div class="fixed top-0 left-0 w-full h-2 bg-gray-200 z-50">
-    <div id="progressBar" class="progress-bar h-full bg-gradient-to-r from-blue-500 to-purple-600" style="width: 10%"></div>
-</div>
-
-<!-- Container Principal -->
-<div class="container mx-auto px-4 py-8 max-w-4xl">
-
-    <!-- Header -->
-    <div class="text-center mb-8">
-        <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-            🎯 Agent IA Premium
-        </h1>
-        <p class="text-xl text-gray-600">Questionnaire intelligent pour créer des templates qui VENDENT</p>
-        <div class="flex justify-center mt-4">
-            <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
-                ⚡ Création en 3 minutes
-            </span>
-        </div>
-    </div>
-
-    <!-- ÉTAPE 1: Identification Métier Précise -->
-    <div id="step1" class="step active">
-        <div class="question-card bg-white rounded-3xl shadow-xl p-8 mb-6">
-            <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">1</div>
-                <h2 class="text-3xl font-bold text-gray-800">Identifions votre métier précisément</h2>
+<!-- PHASE 1: QUESTIONNAIRE -->
+<div id="questionnaire-phase" class="phase active">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-12 fade-in-up">
+            <h1 class="text-6xl font-black bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+                🚀 Agent IA Premium
+            </h1>
+            <p class="text-2xl text-gray-600 mb-6">Créateur de templates qui font VENDRE</p>
+            <div class="flex justify-center space-x-4">
+                <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold pulse-animation">
+                    ⚡ Résultat en 60 secondes
+                </span>
+                <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold">
+                    🎨 Qualité agence web
+                </span>
             </div>
+        </div>
+
+        <!-- Questionnaire Steps -->
+        <div class="space-y-8">
             
-            <p class="text-gray-600 mb-8 text-lg">Plus c'est précis, plus le template sera percutant pour VOS clients !</p>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Secteur principal -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">🏢 Secteur d'activité</label>
-                    <select id="mainSector" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
-                        <option value="">Choisissez votre secteur</option>
-                        <option value="restauration">🍽️ Restauration & Hôtellerie</option>
-                        <option value="commerce">🛍️ Commerce & Retail</option>
-                        <option value="beaute">💄 Beauté & Bien-être</option>
-                        <option value="sante">🏥 Santé & Médical</option>
-                        <option value="technique">🔧 Services Techniques</option>
-                        <option value="local">📍 Services de Proximité</option>
-                        <option value="digital">💻 Digital & Tech</option>
-                        <option value="education">📚 Éducation & Formation</option>
-                        <option value="sport">⚽ Sport & Fitness</option>
-                        <option value="immobilier">🏠 Immobilier</option>
-                    </select>
+            <!-- Step 1: Business Info -->
+            <div class="premium-card p-8">
+                <h2 class="text-3xl font-bold mb-6 flex items-center">
+                    <span class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">1</span>
+                    Votre Métier
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">🏢 Secteur d'activité</label>
+                        <select id="mainSector" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 transition-all">
+                            <option value="">Choisissez votre secteur</option>
+                            <option value="restauration">🍽️ Restauration</option>
+                            <option value="commerce">🛍️ Commerce</option>
+                            <option value="beaute">💄 Beauté & Bien-être</option>
+                            <option value="sante">🏥 Santé</option>
+                            <option value="technique">🔧 Services Techniques</option>
+                            <option value="local">📍 Services Locaux</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">🎯 Spécialité</label>
+                        <input type="text" id="specialty" placeholder="Ex: Pizzeria, Salon de coiffure..." 
+                               class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 transition-all">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Target Audience -->
+            <div class="premium-card p-8">
+                <h2 class="text-3xl font-bold mb-6 flex items-center">
+                    <span class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">2</span>
+                    Votre Clientèle
+                </h2>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-4">👥 Cibles principales (jusqu'à 3)</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="toggleTarget('local')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">🏠</div>
+                            <div class="font-medium text-sm">Locale</div>
+                        </button>
+                        <button onclick="toggleTarget('touriste')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">🧳</div>
+                            <div class="font-medium text-sm">Touristes</div>
+                        </button>
+                        <button onclick="toggleTarget('jeune')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">🎯</div>
+                            <div class="font-medium text-sm">18-35 ans</div>
+                        </button>
+                        <button onclick="toggleTarget('famille')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">👨‍👩‍👧‍👦</div>
+                            <div class="font-medium text-sm">Familles</div>
+                        </button>
+                        <button onclick="toggleTarget('pro')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">💼</div>
+                            <div class="font-medium text-sm">Pro/B2B</div>
+                        </button>
+                        <button onclick="toggleTarget('luxe')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">💎</div>
+                            <div class="font-medium text-sm">Luxe</div>
+                        </button>
+                        <button onclick="toggleTarget('etudiants')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">🎓</div>
+                            <div class="font-medium text-sm">Étudiants</div>
+                        </button>
+                        <button onclick="toggleTarget('senior')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
+                            <div class="text-2xl mb-2">👴</div>
+                            <div class="font-medium text-sm">Seniors</div>
+                        </button>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <span class="text-sm text-gray-500">
+                            <span id="selectedCount">0</span>/3 cibles sélectionnées
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Branding -->
+            <div class="premium-card p-8">
+                <h2 class="text-3xl font-bold mb-6 flex items-center">
+                    <span class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">3</span>
+                    Votre Identité
+                </h2>
+                
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">🏪 Nom de votre établissement</label>
+                        <input type="text" id="businessName" placeholder="Ex: Chez Mario, Beauty Salon..." 
+                               class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-3">💬 Slogan</label>
+                        <input type="text" id="slogan" placeholder="Ex: L'authenticité avant tout..." 
+                               class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 transition-all">
+                    </div>
                 </div>
                 
-                <!-- Spécialité -->
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">🎯 Spécialité exacte</label>
-                    <input type="text" id="specialty" placeholder="Ex: Pizzeria artisanale, Salon de coiffure bio..." 
-                           class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all">
+                <div class="mb-6">
+                    <label class="block text-sm font-semibold text-gray-700 mb-4">🎨 Style visuel</label>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button onclick="selectStyle('moderne')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
+                            <div class="text-3xl mb-2">⚡</div>
+                            <div class="font-semibold">Moderne</div>
+                        </button>
+                        <button onclick="selectStyle('chaleureux')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
+                            <div class="text-3xl mb-2">🔥</div>
+                            <div class="font-semibold">Chaleureux</div>
+                        </button>
+                        <button onclick="selectStyle('elegant')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
+                            <div class="text-3xl mb-2">✨</div>
+                            <div class="font-semibold">Élégant</div>
+                        </button>
+                        <button onclick="selectStyle('naturel')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300 transition-all">
+                            <div class="text-3xl mb-2">🌿</div>
+                            <div class="font-semibold">Naturel</div>
+                        </button>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Positionnement -->
-            <div class="mt-6">
-                <label class="block text-sm font-semibold text-gray-700 mb-3">⭐ Positionnement sur le marché</label>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <button onclick="selectPositioning('premium')" class="option-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
-                        <div class="text-3xl mb-2">👑</div>
-                        <div class="font-semibold">Premium</div>
-                        <div class="text-sm text-gray-600">Haut de gamme, luxe</div>
-                    </button>
-                    <button onclick="selectPositioning('standard')" class="option-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
-                        <div class="text-3xl mb-2">🎯</div>
-                        <div class="font-semibold">Standard</div>
-                        <div class="text-sm text-gray-600">Qualité-prix</div>
-                    </button>
-                    <button onclick="selectPositioning('accessible')" class="option-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
-                        <div class="text-3xl mb-2">💰</div>
-                        <div class="font-semibold">Accessible</div>
-                        <div class="text-sm text-gray-600">Prix compétitifs</div>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="text-center">
-            <button onclick="nextStep(2)" id="step1Next" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all disabled:opacity-50" disabled>
-                Suivant : Clientèle Cible 📊
-            </button>
-        </div>
-    </div>
 
-    <!-- ÉTAPE 2: Analyse Clientèle Poussée -->
-    <div id="step2" class="step">
-        <div class="question-card bg-white rounded-3xl shadow-xl p-8 mb-6">
-            <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">2</div>
-                <h2 class="text-3xl font-bold text-gray-800">Analysons votre clientèle cible</h2>
-            </div>
-            
-            <p class="text-gray-600 mb-8 text-lg">Ces infos vont définir le style, les couleurs et le ton du template</p>
-            
-            <!-- Clientèle principale -->
-            <div class="mb-8">
-                <label class="block text-sm font-semibold text-gray-700 mb-4">👥 Votre clientèle principale (choisissez jusqu'à 3)</label>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button onclick="toggleTarget('local')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">🏠</div>
-                        <div class="font-medium text-sm">Locale</div>
-                    </button>
-                    <button onclick="toggleTarget('touriste')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">🧳</div>
-                        <div class="font-medium text-sm">Touristes</div>
-                    </button>
-                    <button onclick="toggleTarget('jeune')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">🎯</div>
-                        <div class="font-medium text-sm">18-35 ans</div>
-                    </button>
-                    <button onclick="toggleTarget('famille')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">👨‍👩‍👧‍👦</div>
-                        <div class="font-medium text-sm">Familles</div>
-                    </button>
-                    <button onclick="toggleTarget('senior')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">👴</div>
-                        <div class="font-medium text-sm">Seniors</div>
-                    </button>
-                    <button onclick="toggleTarget('pro')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">💼</div>
-                        <div class="font-medium text-sm">Pro/B2B</div>
-                    </button>
-                    <button onclick="toggleTarget('luxe')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">💎</div>
-                        <div class="font-medium text-sm">Luxe</div>
-                    </button>
-                    <button onclick="toggleTarget('etudiants')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
-                        <div class="text-2xl mb-2">🎓</div>
-                        <div class="font-medium text-sm">Étudiants</div>
-                    </button>
-                </div>
-                <div class="mt-3 text-center">
-                    <span class="text-sm text-gray-500">
-                        <span id="selectedTargetsCount">0</span>/3 cibles sélectionnées
-                    </span>
-                </div>
-            </div>
-            
-            <!-- Zone géographique -->
-            <div class="grid md:grid-cols-2 gap-6">
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">📍 Zone géographique</label>
-                    <select id="geoZone" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 transition-all">
-                        <option value="">Sélectionnez votre zone</option>
-                        <option value="hypercentre">🏛️ Hypercentre ville</option>
-                        <option value="centre">🏪 Centre-ville</option>
-                        <option value="quartier">🏘️ Quartier résidentiel</option>
-                        <option value="banlieue">🏡 Banlieue</option>
-                        <option value="rural">🌾 Zone rurale</option>
-                        <option value="zone-commerciale">🛒 Zone commerciale</option>
-                        <option value="zone-touristique">🗼 Zone touristique</option>
-                    </select>
-                </div>
+            <!-- Step 4: Plan -->
+            <div class="premium-card p-8">
+                <h2 class="text-3xl font-bold mb-6 flex items-center">
+                    <span class="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">4</span>
+                    Votre Budget
+                </h2>
                 
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">💰 Budget moyen clientèle</label>
-                    <select id="clientBudget" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-purple-500 transition-all">
-                        <option value="">Budget moyen</option>
-                        <option value="economique">💸 Économique (< 50€)</option>
-                        <option value="moyen">💳 Moyen (50-150€)</option>
-                        <option value="confortable">💎 Confortable (150-500€)</option>
-                        <option value="premium">👑 Premium (500€+)</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        
-        <div class="flex justify-between">
-            <button onclick="prevStep(1)" class="bg-gray-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-600 transition-all">
-                ← Retour
-            </button>
-            <button onclick="nextStep(3)" id="step2Next" class="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all disabled:opacity-50" disabled>
-                Suivant : Identité Visuelle 🎨
-            </button>
-        </div>
-    </div>
-
-    <!-- ÉTAPE 3: Identité Visuelle & Branding -->
-    <div id="step3" class="step">
-        <div class="question-card bg-white rounded-3xl shadow-xl p-8 mb-6">
-            <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">3</div>
-                <h2 class="text-3xl font-bold text-gray-800">Créons votre identité visuelle</h2>
-            </div>
-            
-            <!-- Nom & Slogan -->
-            <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">🏪 Nom de votre établissement</label>
-                    <input type="text" id="businessName" placeholder="Ex: Chez Mario, Beauty Lab..." 
-                           class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold text-gray-700 mb-3">💬 Slogan / Accroche</label>
-                    <input type="text" id="slogan" placeholder="Ex: L'authenticité italienne, Votre beauté révélée..." 
-                           class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-500 focus:ring-2 focus:ring-pink-200 transition-all">
-                </div>
-            </div>
-            
-            <!-- Style visuel -->
-            <div class="mb-8">
-                <label class="block text-sm font-semibold text-gray-700 mb-4">🎨 Style visuel souhaité</label>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button onclick="selectStyle('moderne')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300">
-                        <div class="w-full h-24 bg-gradient-to-br from-gray-100 to-gray-300 rounded-lg mb-3 flex items-center justify-center">
-                            <span class="text-2xl">⚡</span>
-                        </div>
-                        <div class="font-semibold">Moderne</div>
-                        <div class="text-xs text-gray-600">Épuré, tech</div>
-                    </button>
-                    <button onclick="selectStyle('chaleureux')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300">
-                        <div class="w-full h-24 bg-gradient-to-br from-orange-100 to-red-200 rounded-lg mb-3 flex items-center justify-center">
-                            <span class="text-2xl">🔥</span>
-                        </div>
-                        <div class="font-semibold">Chaleureux</div>
-                        <div class="text-xs text-gray-600">Convivial, cosy</div>
-                    </button>
-                    <button onclick="selectStyle('elegant')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300">
-                        <div class="w-full h-24 bg-gradient-to-br from-purple-100 to-blue-200 rounded-lg mb-3 flex items-center justify-center">
-                            <span class="text-2xl">✨</span>
-                        </div>
-                        <div class="font-semibold">Élégant</div>
-                        <div class="text-xs text-gray-600">Chic, raffiné</div>
-                    </button>
-                    <button onclick="selectStyle('naturel')" class="style-btn p-6 border-2 border-gray-200 rounded-xl text-center hover:border-pink-300">
-                        <div class="w-full h-24 bg-gradient-to-br from-green-100 to-green-200 rounded-lg mb-3 flex items-center justify-center">
-                            <span class="text-2xl">🌿</span>
-                        </div>
-                        <div class="font-semibold">Naturel</div>
-                        <div class="text-xs text-gray-600">Bio, authentique</div>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Couleurs préférées -->
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-4">🌈 Couleurs de votre marque (2 couleurs max)</label>
-                <div class="grid grid-cols-4 md:grid-cols-8 gap-3">
-                    <button onclick="selectColor('#3B82F6')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #3B82F6;" title="Bleu professionnel"></button>
-                    <button onclick="selectColor('#EF4444')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #EF4444;" title="Rouge passion"></button>
-                    <button onclick="selectColor('#10B981')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #10B981;" title="Vert nature"></button>
-                    <button onclick="selectColor('#F59E0B')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #F59E0B;" title="Orange énergie"></button>
-                    <button onclick="selectColor('#8B5CF6')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #8B5CF6;" title="Violet créatif"></button>
-                    <button onclick="selectColor('#EC4899')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #EC4899;" title="Rose tendance"></button>
-                    <button onclick="selectColor('#6B7280')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #6B7280;" title="Gris élégant"></button>
-                    <button onclick="selectColor('#1F2937')" class="color-btn w-16 h-16 rounded-xl border-4 border-gray-200 hover:border-gray-400 transition-all" style="background-color: #1F2937;" title="Noir premium"></button>
-                </div>
-                <div id="selectedColors" class="mt-4 flex gap-2"></div>
-            </div>
-        </div>
-        
-        <div class="flex justify-between">
-            <button onclick="prevStep(2)" class="bg-gray-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-600 transition-all">
-                ← Retour
-            </button>
-            <button onclick="nextStep(4)" id="step3Next" class="bg-gradient-to-r from-pink-600 to-red-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all disabled:opacity-50" disabled>
-                Suivant : Fonctionnalités 🚀
-            </button>
-        </div>
-    </div>
-
-    <!-- ÉTAPE 4: Fonctionnalités Essentielles -->
-    <div id="step4" class="step">
-        <div class="question-card bg-white rounded-3xl shadow-xl p-8 mb-6">
-            <div class="flex items-center mb-6">
-                <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold text-xl mr-4">4</div>
-                <h2 class="text-3xl font-bold text-gray-800">Fonctionnalités indispensables</h2>
-            </div>
-            
-            <p class="text-gray-600 mb-8 text-lg">Sélectionnez les fonctionnalités qui vont faire la différence pour VOS clients</p>
-            
-            <div id="functionalitiesContainer" class="grid md:grid-cols-2 gap-4">
-                <!-- Les fonctionnalités seront générées dynamiquement selon le métier -->
-            </div>
-            
-            <!-- Budget & Plan -->
-            <div class="mt-8 p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl border border-yellow-200">
-                <h3 class="text-xl font-bold text-gray-800 mb-4">💰 Budget & Plan recommandé</h3>
-                <div class="grid md:grid-cols-3 gap-4">
-                    <button onclick="selectPlan('basic')" class="plan-btn p-6 bg-white border-2 border-gray-200 rounded-xl text-center hover:border-orange-300 hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">🥉</div>
-                        <div class="font-bold text-lg">BASIC</div>
-                        <div class="text-2xl font-bold text-orange-600 my-2">49-79€</div>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <button onclick="selectPlan('basic')" class="plan-btn p-8 bg-white border-2 border-gray-200 rounded-xl text-center hover:border-orange-300 hover:shadow-lg transition-all">
+                        <div class="text-4xl mb-4">🥉</div>
+                        <div class="font-bold text-xl mb-2">BASIC</div>
+                        <div class="text-3xl font-bold text-orange-600 mb-4">79€/mois</div>
                         <div class="text-sm text-gray-600">Template + fonctions essentielles</div>
                     </button>
-                    <button onclick="selectPlan('premium')" class="plan-btn p-6 bg-white border-2 border-orange-400 rounded-xl text-center hover:border-orange-500 hover:shadow-lg transition-all shadow-md">
-                        <div class="text-2xl mb-2">🥈</div>
-                        <div class="font-bold text-lg">PREMIUM</div>
-                        <div class="text-2xl font-bold text-orange-600 my-2">149-199€</div>
-                        <div class="text-sm text-gray-600">Template + apps complètes</div>
-                        <div class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full mt-2">RECOMMANDÉ</div>
+                    <button onclick="selectPlan('premium')" class="plan-btn p-8 bg-white border-2 border-orange-400 rounded-xl text-center hover:border-orange-500 hover:shadow-lg transition-all shadow-md">
+                        <div class="text-4xl mb-4">🥈</div>
+                        <div class="font-bold text-xl mb-2">PREMIUM</div>
+                        <div class="text-3xl font-bold text-orange-600 mb-4">199€/mois</div>
+                        <div class="text-sm text-gray-600">Solution complète</div>
+                        <div class="bg-orange-100 text-orange-800 text-xs px-3 py-1 rounded-full mt-3">RECOMMANDÉ</div>
                     </button>
-                    <button onclick="selectPlan('excellence')" class="plan-btn p-6 bg-white border-2 border-gray-200 rounded-xl text-center hover:border-orange-300 hover:shadow-lg transition-all">
-                        <div class="text-2xl mb-2">🥇</div>
-                        <div class="font-bold text-lg">EXCELLENCE</div>
-                        <div class="text-2xl font-bold text-orange-600 my-2">299-399€</div>
-                        <div class="text-sm text-gray-600">Solution sur-mesure complète</div>
+                    <button onclick="selectPlan('excellence')" class="plan-btn p-8 bg-white border-2 border-gray-200 rounded-xl text-center hover:border-orange-300 hover:shadow-lg transition-all">
+                        <div class="text-4xl mb-4">🥇</div>
+                        <div class="font-bold text-xl mb-2">EXCELLENCE</div>
+                        <div class="text-3xl font-bold text-orange-600 mb-4">399€/mois</div>
+                        <div class="text-sm text-gray-600">Sur-mesure premium</div>
                     </button>
                 </div>
             </div>
+
+            <!-- Generate Button -->
+            <div class="text-center">
+                <button onclick="generateTemplate()" id="generateBtn" class="btn-premium text-2xl px-16 py-6 pulse-animation disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i class="fas fa-magic mr-3"></i>
+                    🚀 GÉNÉRER MON TEMPLATE PREMIUM
+                </button>
+                <div class="mt-4 text-sm text-gray-600">
+                    <i class="fas fa-shield-alt mr-1"></i>Template généré en moins de 10 secondes
+                </div>
+            </div>
+
         </div>
+    </div>
+</div>
+
+<!-- PHASE 2: TEMPLATE PREVIEW -->
+<div id="template-phase" class="phase">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
         
-        <div class="flex justify-between">
-            <button onclick="prevStep(3)" class="bg-gray-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-600 transition-all">
-                ← Retour
-            </button>
-            <button onclick="generatePremiumTemplate()" id="step4Next" class="bg-gradient-to-r from-red-600 to-orange-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all disabled:opacity-50" disabled>
-                🚀 GÉNÉRER MON TEMPLATE PREMIUM
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-5xl font-black bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                🎨 Votre Template Premium
+            </h1>
+            <p class="text-xl text-gray-600">Généré spécialement pour <span id="businessDisplay" class="font-bold text-purple-600"></span></p>
+        </div>
+
+        <div class="grid lg:grid-cols-4 gap-8">
+            
+            <!-- Sidebar Info -->
+            <div class="lg:col-span-1">
+                <div class="premium-card p-6 sticky top-6">
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-info-circle mr-2 text-blue-600"></i>
+                        Votre Solution
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-blue-50 rounded-xl">
+                            <div class="font-semibold text-blue-800">Secteur</div>
+                            <div class="text-blue-600" id="sectorDisplay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="validateSolution()" class="btn-premium text-2xl px-16 py-6 pulse-animation mb-4">
+                    <i class="fas fa-handshake mr-3"></i>JE VALIDE CETTE SOLUTION
+                </button>
+                <div class="text-sm text-gray-600">
+                    <i class="fas fa-shield-alt mr-1"></i>Garantie satisfait ou remboursé 30 jours
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div class="text-center mt-8">
+            <button onclick="showTemplate()" class="bg-gray-500 text-white px-8 py-3 rounded-xl font-semibold hover:bg-gray-600 transition-all">
+                ← Retour au Template
             </button>
         </div>
     </div>
-
 </div>
 
-<!-- Floating Help Button -->
-<button class="floating-btn bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all">
-    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-    </svg>
-</button>
-
 <script>
-// Variables globales pour stocker les données
-let premiumData = {
-    // Étape 1: Métier
+// Variables globales
+let appData = {
     mainSector: '',
     specialty: '',
-    positioning: '',
-    
-    // Étape 2: Clientèle
-    targetAudience: [],
-    geoZone: '',
-    clientBudget: '',
-    
-    // Étape 3: Identité
     businessName: '',
     slogan: '',
     visualStyle: '',
-    brandColors: [],
-    
-    // Étape 4: Fonctionnalités
-    selectedFeatures: [],
     selectedPlan: '',
-    
-    // Métadonnées
-    timestamp: new Date().toISOString(),
-    questionnaire_version: '2.0'
+    targetAudience: []
 };
 
-let currentStep = 1;
-const totalSteps = 4;
-
-// Fonctionnalités par secteur
-const sectorFeatures = {
+// Photos par secteur
+const sectorImages = {
     restauration: [
-        { id: 'menu_digital', name: '📱 Menu Digital Interactif', desc: 'Menu avec photos HD, allergènes, prix' },
-        { id: 'reservation', name: '📅 Réservation en ligne', desc: 'Planning temps réel avec confirmations SMS' },
-        { id: 'commande_ligne', name: '🛒 Commande & Livraison', desc: 'Click & collect, livraison intégrée' },
-        { id: 'avis_clients', name: '⭐ Avis & Reviews', desc: 'Système d\'avis avec photos plats' },
-        { id: 'programme_fidelite', name: '🎁 Programme Fidélité', desc: 'Points, récompenses, offres VIP' },
-        { id: 'carte_vins', name: '🍷 Carte des Vins', desc: 'Accords mets-vins, suggestions sommelier' },
-        { id: 'evenements', name: '🎉 Gestion Événements', desc: 'Privatisation, événements spéciaux' },
-        { id: 'chef_story', name: '👨‍🍳 Histoire du Chef', desc: 'Storytelling, origine des produits' }
+        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=800&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&h=600&fit=crop'
     ],
     commerce: [
-        { id: 'catalogue_produits', name: '🏷️ Catalogue Produits', desc: 'Photos 360°, descriptions détaillées' },
-        { id: 'tailles_couleurs', name: '👔 Variantes Produits', desc: 'Tailles, couleurs, stock temps réel' },
-        { id: 'click_collect', name: '📦 Click & Collect', desc: 'Commande en ligne, retrait magasin' },
-        { id: 'recommendations', name: '🎯 Recommandations IA', desc: 'Suggestions personnalisées' },
-        { id: 'lookbook', name: '📸 Lookbook & Styling', desc: 'Inspiration, conseils style' },
-        { id: 'programme_vip', name: '💎 Programme VIP', desc: 'Avantages clients privilégiés' },
-        { id: 'try_before', name: '👗 Essayage Virtuel', desc: 'Réalité augmentée' },
-        { id: 'personal_shopper', name: '🛍️ Personal Shopper', desc: 'Conseil personnalisé en ligne' }
+        'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=600&fit=crop'
     ],
     beaute: [
-        { id: 'prise_rdv', name: '💅 Prise RDV Intelligente', desc: 'Planning automatisé avec rappels' },
-        { id: 'galerie_avant_apres', name: '✨ Galerie Avant/Après', desc: 'Portfolio transformations clients' },
-        { id: 'conseils_beaute', name: '💄 Conseils Beauté', desc: 'Tips personnalisés selon type peau' },
-        { id: 'produits_maison', name: '🧴 Boutique Produits', desc: 'Vente produits utilisés en salon' },
-        { id: 'diagnostic_peau', name: '🔍 Diagnostic Peau', desc: 'Analyse personnalisée en ligne' },
-        { id: 'forfaits_soins', name: '💆‍♀️ Forfaits & Abonnements', desc: 'Packages soins réguliers' },
-        { id: 'equipe_experts', name: '👥 Équipe d\'Experts', desc: 'Profils spécialistes, certifications' },
-        { id: 'tendances_saison', name: '🌟 Tendances Saison', desc: 'Actualités beauté, nouveautés' }
-    ],
-    sante: [
-        { id: 'prise_rdv_medical', name: '🏥 Prise RDV Médicale', desc: 'Planning praticiens avec spécialités' },
-        { id: 'teleconsultation', name: '💻 Téléconsultation', desc: 'Consultations vidéo sécurisées' },
-        { id: 'dossier_patient', name: '📋 Dossier Patient', desc: 'Historique sécurisé, ordonnances' },
-        { id: 'rappel_medicaments', name: '💊 Rappels Médicaments', desc: 'Notifications prises, renouvellements' },
-        { id: 'equipe_medicale', name: '👨‍⚕️ Équipe Médicale', desc: 'Profils praticiens, spécialités' },
-        { id: 'urgences', name: '🚨 Gestion Urgences', desc: 'Contact prioritaire, géolocalisation' },
-        { id: 'preventions', name: '🛡️ Prévention Santé', desc: 'Conseils, rappels check-ups' },
-        { id: 'assurances', name: '📄 Gestion Assurances', desc: 'Tiers payant, remboursements' }
-    ],
-    technique: [
-        { id: 'devis_ligne', name: '📝 Devis en Ligne', desc: 'Estimation automatique selon photos' },
-        { id: 'planning_interventions', name: '🔧 Planning Interventions', desc: 'Créneaux disponibles en temps réel' },
-        { id: 'suivi_reparations', name: '📊 Suivi Réparations', desc: 'Étapes travaux, photos progression' },
-        { id: 'garanties', name: '🛡️ Gestion Garanties', desc: 'Suivi garanties, extensions' },
-        { id: 'stock_pieces', name: '⚙️ Stock Pièces', desc: 'Disponibilité pièces, délais' },
-        { id: 'urgences_24h', name: '🚨 Urgences 24h/7j', desc: 'Intervention express, surcoût' },
-        { id: 'certifications', name: '🏆 Certifications', desc: 'Agréments, assurances, qualifications' },
-        { id: 'factures_digitales', name: '📱 Factures Digitales', desc: 'Facturing auto, paiement en ligne' }
-    ],
-    local: [
-        { id: 'systeme_tickets', name: '🎫 Système Tickets', desc: 'QR codes, suivi étapes' },
-        { id: 'notifications_pret', name: '🔔 Notifications Prêt', desc: 'SMS/Email quand c\'est prêt' },
-        { id: 'tarifs_transparents', name: '💰 Tarifs Transparents', desc: 'Grille tarifaire claire, estimations' },
-        { id: 'collecte_livraison', name: '🚚 Collecte/Livraison', desc: 'Service à domicile' },
-        { id: 'programme_fidelite', name: '🎁 Carte Fidélité', desc: 'Points, remises fidélité' },
-        { id: 'conseils_entretien', name: '💡 Conseils Entretien', desc: 'Tips préservation, durée de vie' },
-        { id: 'eco_responsable', name: '🌱 Eco-Responsable', desc: 'Pratiques écologiques, recyclage' },
-        { id: 'horaires_etendus', name: '⏰ Horaires Étendus', desc: 'Dépôt/retrait horaires flexibles' }
-    ],
-    digital: [
-        { id: 'portfolio_projets', name: '💼 Portfolio Projets', desc: 'Showcases réalisations clients' },
-        { id: 'devis_intelligent', name: '🤖 Devis Intelligent', desc: 'Estimation automatique selon besoins' },
-        { id: 'process_creation', name: '⚡ Process Création', desc: 'Étapes projet, validation client' },
-        { id: 'testimonials_video', name: '🎥 Témoignages Vidéo', desc: 'Avis clients authentiques' },
-        { id: 'expertise_technique', name: '🛠️ Expertise Technique', desc: 'Stack technique, certifications' },
-        { id: 'maintenance_support', name: '🔧 Maintenance & Support', desc: 'SAV, mises à jour, hotline' },
-        { id: 'references_clients', name: '🏢 Références Clients', desc: 'Logos clients, études de cas' },
-        { id: 'blog_expertise', name: '📝 Blog Expertise', desc: 'Articles techniques, actualités' }
-    ],
-    education: [
-        { id: 'cours_ligne', name: '📚 Cours en Ligne', desc: 'Modules e-learning interactifs' },
-        { id: 'planning_cours', name: '📅 Planning Cours', desc: 'Réservation créneaux, groupes' },
-        { id: 'suivi_progression', name: '📈 Suivi Progression', desc: 'Tableaux de bord élèves/parents' },
-        { id: 'ressources_pedagogiques', name: '📖 Ressources Pédagogiques', desc: 'Bibliothèque documents, vidéos' },
-        { id: 'evaluations', name: '✅ Évaluations', desc: 'Quiz, examens blancs, corrections' },
-        { id: 'communication_parents', name: '👨‍👩‍👧‍👦 Communication Parents', desc: 'Bulletins, rendez-vous, messages' },
-        { id: 'equipe_pedagogique', name: '👨‍🏫 Équipe Pédagogique', desc: 'Profils formateurs, spécialités' },
-        { id: 'certifications_diplomes', name: '🎓 Certifications', desc: 'Diplômes, attestations, badges' }
-    ],
-    sport: [
-        { id: 'reservation_cours', name: '🏃‍♂️ Réservation Cours', desc: 'Planning activités, coachs' },
-        { id: 'suivi_performance', name: '📊 Suivi Performance', desc: 'Objectifs, progression, stats' },
-        { id: 'programmes_entrainement', name: '💪 Programmes Entraînement', desc: 'Plans personnalisés selon objectifs' },
-        { id: 'nutrition_conseils', name: '🥗 Conseils Nutrition', desc: 'Plans alimentaires, recettes' },
-        { id: 'coaching_perso', name: '👨‍💼 Coaching Personnel', desc: 'Suivi individuel, motivation' },
-        { id: 'challenges_communaute', name: '🏆 Challenges Communauté', desc: 'Défis groupe, classements' },
-        { id: 'materiel_location', name: '🏋️‍♂️ Matériel & Location', desc: 'Équipements disponibles' },
-        { id: 'vestiaires_services', name: '🚿 Services Vestiaires', desc: 'Casiers, douches, commodités' }
-    ],
-    immobilier: [
-        { id: 'visite_virtuelle', name: '🏠 Visites Virtuelles', desc: 'Tours 360°, réalité augmentée' },
-        { id: 'estimation_bien', name: '💰 Estimation Bien', desc: 'Évaluation automatique prix marché' },
-        { id: 'dossier_location', name: '📋 Dossier Location', desc: 'Constitution dossier digital' },
-        { id: 'alerte_biens', name: '🔔 Alertes Biens', desc: 'Notifications nouveautés selon critères' },
-        { id: 'financement_aide', name: '🏦 Aide Financement', desc: 'Simulation prêts, partenaires banques' },
-        { id: 'quartier_infos', name: '🗺️ Infos Quartier', desc: 'Services, transports, écoles' },
-        { id: 'conseiller_dedie', name: '👨‍💼 Conseiller Dédié', desc: 'Agent référent, expertise locale' },
-        { id: 'documents_legaux', name: '📄 Documents Légaux', desc: 'Contrats, diagnostics, certificats' }
+        'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=600&fit=crop',
+        'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=600&fit=crop'
     ]
 };
 
-// Navigation entre étapes
-function nextStep(step) {
-    if (validateCurrentStep()) {
-        currentStep = step;
-        updateProgressBar();
-        showStep(step);
-        
-        // Générer les fonctionnalités dynamiquement à l'étape 4
-        if (step === 4) {
-            generateFunctionalities();
-        }
-    }
-}
-
-function prevStep(step) {
-    currentStep = step;
-    updateProgressBar();
-    showStep(step);
-}
-
-function showStep(step) {
-    // Masquer toutes les étapes
-    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-    
-    // Afficher l'étape demandée
-    setTimeout(() => {
-        document.getElementById(`step${step}`).classList.add('active');
-    }, 100);
-}
-
-function updateProgressBar() {
-    const progress = (currentStep / totalSteps) * 100;
-    document.getElementById('progressBar').style.width = progress + '%';
-}
-
-// Validation des étapes
-function validateCurrentStep() {
-    switch(currentStep) {
-        case 1:
-            const sector = document.getElementById('mainSector').value;
-            const specialty = document.getElementById('specialty').value;
-            return sector && specialty && premiumData.positioning;
-            
-        case 2:
-            return premiumData.targetAudience.length > 0 && 
-                   document.getElementById('geoZone').value &&
-                   document.getElementById('clientBudget').value;
-                   
-        case 3:
-            return document.getElementById('businessName').value && 
-                   premiumData.visualStyle && 
-                   premiumData.brandColors.length > 0;
-                   
-        case 4:
-            return premiumData.selectedFeatures.length > 0 && premiumData.selectedPlan;
-            
-        default:
-            return true;
-    }
-}
-
 // Fonctions de sélection
-function selectPositioning(pos) {
-    premiumData.positioning = pos;
-    document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-    event.target.closest('.option-btn').classList.add('selected');
-    updateStepValidation(1);
-}
-
 function toggleTarget(target) {
-    const index = premiumData.targetAudience.indexOf(target);
+    const index = appData.targetAudience.indexOf(target);
     const btn = event.target.closest('.target-btn');
     
-    if (index === -1 && premiumData.targetAudience.length < 3) { // Augmenté de 2 à 3 cibles max
-        premiumData.targetAudience.push(target);
+    if (index === -1 && appData.targetAudience.length < 3) {
+        appData.targetAudience.push(target);
         btn.classList.add('selected');
     } else if (index !== -1) {
-        premiumData.targetAudience.splice(index, 1);
+        appData.targetAudience.splice(index, 1);
         btn.classList.remove('selected');
-    } else if (premiumData.targetAudience.length >= 3) {
-        // Message si tentative de sélectionner plus de 3
-        showTemporaryMessage(btn, 'Maximum 3 cibles');
     }
     
-    // Mettre à jour le compteur
-    document.getElementById('selectedTargetsCount').textContent = premiumData.targetAudience.length;
-    updateStepValidation(2);
-}
-
-// Fonction pour afficher un message temporaire
-function showTemporaryMessage(element, message) {
-    const originalText = element.innerHTML;
-    element.innerHTML = `<div class="text-xs text-red-600">${message}</div>`;
-    element.classList.add('border-red-300', 'bg-red-50');
-    
-    setTimeout(() => {
-        element.innerHTML = originalText;
-        element.classList.remove('border-red-300', 'bg-red-50');
-    }, 2000);
+    updateSelectedCount();
+    validateForm();
 }
 
 function selectStyle(style) {
-    premiumData.visualStyle = style;
+    appData.visualStyle = style;
     document.querySelectorAll('.style-btn').forEach(btn => btn.classList.remove('selected'));
     event.target.closest('.style-btn').classList.add('selected');
-    updateStepValidation(3);
-}
-
-function selectColor(color) {
-    const index = premiumData.brandColors.indexOf(color);
-    const btn = event.target;
-    
-    if (index === -1 && premiumData.brandColors.length < 2) {
-        premiumData.brandColors.push(color);
-        btn.classList.add('selected');
-        btn.style.borderColor = '#059669';
-        btn.style.borderWidth = '4px';
-    } else if (index !== -1) {
-        premiumData.brandColors.splice(index, 1);
-        btn.classList.remove('selected');
-        btn.style.borderColor = '#D1D5DB';
-        btn.style.borderWidth = '4px';
-    }
-    
-    updateSelectedColorsDisplay();
-    updateStepValidation(3);
-}
-
-function updateSelectedColorsDisplay() {
-    const container = document.getElementById('selectedColors');
-    container.innerHTML = premiumData.brandColors.map(color => 
-        `<div class="w-8 h-8 rounded-lg border-2 border-gray-300" style="background-color: ${color};"></div>`
-    ).join('');
-}
-
-function toggleFeature(featureId) {
-    const index = premiumData.selectedFeatures.indexOf(featureId);
-    const checkbox = event.target;
-    
-    if (index === -1) {
-        premiumData.selectedFeatures.push(featureId);
-    } else {
-        premiumData.selectedFeatures.splice(index, 1);
-    }
-    updateStepValidation(4);
+    validateForm();
 }
 
 function selectPlan(plan) {
-    premiumData.selectedPlan = plan;
+    appData.selectedPlan = plan;
     document.querySelectorAll('.plan-btn').forEach(btn => btn.classList.remove('selected'));
     event.target.closest('.plan-btn').classList.add('selected');
-    updateStepValidation(4);
+    validateForm();
 }
 
-function updateStepValidation(step) {
-    const nextBtn = document.getElementById(`step${step}Next`);
-    if (nextBtn) {
-        nextBtn.disabled = !validateCurrentStep();
-    }
+function updateSelectedCount() {
+    document.getElementById('selectedCount').textContent = appData.targetAudience.length;
 }
 
-// Génération dynamique des fonctionnalités
-function generateFunctionalities() {
+function validateForm() {
     const sector = document.getElementById('mainSector').value;
-    const container = document.getElementById('functionalitiesContainer');
+    const specialty = document.getElementById('specialty').value;
+    const businessName = document.getElementById('businessName').value;
+    const hasTargets = appData.targetAudience.length > 0;
+    const hasStyle = appData.visualStyle !== '';
+    const hasPlan = appData.selectedPlan !== '';
     
-    if (!sectorFeatures[sector]) return;
+    const isValid = sector && specialty && businessName && hasTargets && hasStyle && hasPlan;
+    document.getElementById('generateBtn').disabled = !isValid;
+}
+
+// Génération du template
+function generateTemplate() {
+    // Collecter les données
+    appData.mainSector = document.getElementById('mainSector').value;
+    appData.specialty = document.getElementById('specialty').value;
+    appData.businessName = document.getElementById('businessName').value;
+    appData.slogan = document.getElementById('slogan').value;
     
-    const features = sectorFeatures[sector];
-    container.innerHTML = features.map(feature => `
-        <div class="feature-card bg-white border-2 border-gray-200 rounded-xl p-4 hover:border-orange-300 hover:shadow-md transition-all">
-            <div class="flex items-start">
-                <input type="checkbox" id="feature_${feature.id}" onchange="toggleFeature('${feature.id}')" 
-                       class="mt-1 mr-3 w-5 h-5 text-orange-600 rounded focus:ring-orange-500">
-                <div class="flex-1">
-                    <label for="feature_${feature.id}" class="cursor-pointer">
-                        <div class="font-semibold text-gray-800 mb-1">${feature.name}</div>
-                        <div class="text-sm text-gray-600">${feature.desc}</div>
-                    </label>
+    console.log('🎨 Génération template avec:', appData);
+    
+    // Passer à la phase template
+    showPhase('template');
+    
+    // Mettre à jour les informations
+    updateTemplateInfo();
+    
+    // Générer le contenu
+    setTimeout(() => {
+        generateTemplateContent();
+    }, 1000);
+}
+
+function generateTemplateContent() {
+    const colors = getColorsForStyle(appData.visualStyle);
+    const heroImage = getHeroImageForSector(appData.mainSector);
+    
+    const templateHTML = `
+        <div class="template-preview">
+            <!-- Hero Section -->
+            <div class="relative h-96 overflow-hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                <img src="${heroImage}" class="absolute inset-0 w-full h-full object-cover">
+                <div class="relative z-10 flex items-center justify-center h-full text-white text-center">
+                    <div>
+                        <h1 class="text-5xl font-bold mb-4" style="color: ${colors.primary};">
+                            ${appData.businessName}
+                        </h1>
+                        <p class="text-xl mb-6">${appData.slogan || 'Votre partenaire de confiance'}</p>
+                        <button class="px-8 py-3 rounded-lg font-semibold text-white transition-all hover:opacity-90" style="background: ${colors.secondary};">
+                            ${getCtaForSector(appData.mainSector)}
+                        </button>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Services Section -->
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-4xl font-bold text-center mb-12" style="color: ${colors.primary};">
+                        ${getServicesTitle(appData.mainSector)}
+                    </h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        ${generateServiceCards(colors)}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="py-16 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-4xl font-bold text-center mb-12" style="color: ${colors.primary};">
+                        Pourquoi nous choisir ?
+                    </h2>
+                    <div class="grid md:grid-cols-4 gap-6">
+                        ${generateFeatureCards(colors)}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials Section -->
+            <div class="py-16 bg-white">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-4xl font-bold text-center mb-12" style="color: ${colors.primary};">
+                        Ils nous recommandent
+                    </h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        ${generateTestimonials()}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="py-16 bg-gray-900 text-white">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-4xl font-bold mb-8" style="color: ${colors.primary};">
+                        Contactez-nous
+                    </h2>
+                    <div class="grid md:grid-cols-3 gap-8 mb-8">
+                        <div class="flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-4" style="background: ${colors.secondary};">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="font-semibold">Adresse</div>
+                            <div class="text-gray-300">123 Rue Example, Ville</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-4" style="background: ${colors.secondary};">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="font-semibold">Téléphone</div>
+                            <div class="text-gray-300">01 23 45 67 89</div>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full flex items-center justify-center text-white text-2xl mb-4" style="background: ${colors.secondary};">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="font-semibold">Email</div>
+                            <div class="text-gray-300">contact@${appData.businessName.toLowerCase().replace(/\s+/g, '')}.fr</div>
+                        </div>
+                    </div>
+                    <button class="px-8 py-4 rounded-lg font-semibold text-white text-lg transition-all hover:opacity-90" style="background: ${colors.primary};">
+                        <i class="fas fa-calendar mr-2"></i>Prendre Contact
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('templateContent').innerHTML = templateHTML;
+}
+
+// Fonctions utilitaires
+function getColorsForStyle(style) {
+    const colorSchemes = {
+        moderne: { primary: '#3B82F6', secondary: '#8B5CF6' },
+        chaleureux: { primary: '#DC2626', secondary: '#F59E0B' },
+        elegant: { primary: '#1F2937', secondary: '#6B7280' },
+        naturel: { primary: '#059669', secondary: '#10B981' }
+    };
+    return colorSchemes[style] || colorSchemes.moderne;
+}
+
+function getHeroImageForSector(sector) {
+    return sectorImages[sector] ? sectorImages[sector][0] : 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop';
+}
+
+function getCtaForSector(sector) {
+    const ctas = {
+        restauration: 'Réserver une Table',
+        commerce: 'Découvrir la Collection',
+        beaute: 'Prendre Rendez-vous',
+        sante: 'Consulter',
+        technique: 'Demander un Devis',
+        local: 'Nous Contacter'
+    };
+    return ctas[sector] || 'En Savoir Plus';
+}
+
+function getServicesTitle(sector) {
+    const titles = {
+        restauration: 'Notre Carte',
+        commerce: 'Nos Produits',
+        beaute: 'Nos Soins',
+        sante: 'Nos Services',
+        technique: 'Nos Prestations',
+        local: 'Nos Spécialités'
+    };
+    return titles[sector] || 'Nos Services';
+}
+
+function generateServiceCards(colors) {
+    const services = {
+        restauration: [
+            { icon: 'utensils', title: 'Cuisine Gastronomique', desc: 'Plats préparés avec des produits frais' },
+            { icon: 'wine-glass-alt', title: 'Cave à Vins', desc: 'Sélection de vins fins' },
+            { icon: 'concierge-bell', title: 'Service Premium', desc: 'Équipe experte à votre service' }
+        ],
+        commerce: [
+            { icon: 'shopping-bag', title: 'Dernières Tendances', desc: 'Collections renouvelées régulièrement' },
+            { icon: 'tags', title: 'Prix Attractifs', desc: 'Qualité au meilleur prix' },
+            { icon: 'truck', title: 'Livraison Rapide', desc: 'Livraison gratuite dès 50€' }
+        ],
+        beaute: [
+            { icon: 'spa', title: 'Soins Personnalisés', desc: 'Protocoles adaptés à votre peau' },
+            { icon: 'leaf', title: 'Produits Naturels', desc: 'Cosmétiques bio et naturels' },
+            { icon: 'user-md', title: 'Expertise Reconnue', desc: '15 ans d\'expérience' }
+        ]
+    };
+    
+    const sectorServices = services[appData.mainSector] || services.restauration;
+    
+    return sectorServices.map(service => `
+        <div class="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all">
+            <div class="w-20 h-20 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl" style="background: ${colors.secondary};">
+                <i class="fas fa-${service.icon}"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">${service.title}</h3>
+            <p class="text-gray-600">${service.desc}</p>
         </div>
     `).join('');
 }
 
-// Génération du template premium
-function generatePremiumTemplate() {
-    // Collecter toutes les données finales
-    premiumData.mainSector = document.getElementById('mainSector').value;
-    premiumData.specialty = document.getElementById('specialty').value;
-    premiumData.geoZone = document.getElementById('geoZone').value;
-    premiumData.clientBudget = document.getElementById('clientBudget').value;
-    premiumData.businessName = document.getElementById('businessName').value;
-    premiumData.slogan = document.getElementById('slogan').value;
+function generateFeatureCards(colors) {
+    const features = [
+        { icon: 'clock', title: 'Rapidité', desc: 'Service express' },
+        { icon: 'shield-alt', title: 'Qualité', desc: 'Garantie satisfaction' },
+        { icon: 'heart', title: 'Passion', desc: 'Amour du métier' },
+        { icon: 'star', title: 'Excellence', desc: 'Note 5/5 clients' }
+    ];
     
-    console.log('🚀 Génération template premium avec données complètes:', premiumData);
+    return features.map(feature => `
+        <div class="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all">
+            <div class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-xl" style="background: ${colors.primary};">
+                <i class="fas fa-${feature.icon}"></i>
+            </div>
+            <h4 class="font-bold mb-2">${feature.title}</h4>
+            <p class="text-sm text-gray-600">${feature.desc}</p>
+        </div>
+    `).join('');
+}
+
+function generateTestimonials() {
+    const testimonials = [
+        { name: 'Sophie M.', text: 'Service exceptionnel, je recommande !', rating: 5 },
+        { name: 'Pierre D.', text: 'Qualité irréprochable, équipe top !', rating: 5 },
+        { name: 'Marie L.', text: 'Une expérience formidable !', rating: 5 }
+    ];
     
-    // Envoyer au système principal
+    return testimonials.map(testimonial => `
+        <div class="text-center p-6 bg-gray-50 rounded-xl">
+            <div class="flex justify-center mb-4">
+                ${Array(testimonial.rating).fill().map(() => '<i class="fas fa-star text-yellow-400"></i>').join('')}
+            </div>
+            <p class="text-gray-700 italic mb-4">"${testimonial.text}"</p>
+            <div class="font-semibold">${testimonial.name}</div>
+        </div>
+    `).join('');
+}
+
+// Navigation entre phases
+function showPhase(phase) {
+    document.querySelectorAll('.phase').forEach(p => p.classList.remove('active'));
+    setTimeout(() => {
+        document.getElementById(`${phase}-phase`).classList.add('active');
+    }, 100);
+}
+
+function showTemplate() {
+    showPhase('template');
+}
+
+function showApps() {
+    showPhase('apps');
+    generateAppsContent();
+}
+
+function updateTemplateInfo() {
+    document.getElementById('businessDisplay').textContent = appData.businessName;
+    document.getElementById('sectorDisplay').textContent = appData.mainSector;
+    document.getElementById('styleDisplay').textContent = appData.visualStyle;
+    document.getElementById('planDisplay').textContent = appData.selectedPlan.toUpperCase();
+    document.getElementById('targetDisplay').textContent = appData.targetAudience.join(', ');
+}
+
+function generateAppsContent() {
+    const managerFeatures = getManagerFeatures(appData.mainSector);
+    const clientFeatures = getClientFeatures(appData.mainSector);
+    
+    document.getElementById('managerAppName').textContent = `${appData.specialty} Manager`;
+    document.getElementById('clientAppName').textContent = `${appData.businessName} App`;
+    
+    document.getElementById('managerFeatures').innerHTML = managerFeatures.map((feature, index) => `
+        <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full bg-blue-600 text-white text-sm font-bold flex items-center justify-center mr-3">
+                ${index + 1}
+            </div>
+            <span>${feature}</span>
+        </div>
+    `).join('');
+    
+    document.getElementById('clientFeatures').innerHTML = clientFeatures.map((feature, index) => `
+        <div class="flex items-center">
+            <div class="w-8 h-8 rounded-full bg-green-600 text-white text-sm font-bold flex items-center justify-center mr-3">
+                ${index + 1}
+            </div>
+            <span>${feature}</span>
+        </div>
+    `).join('');
+    
+    const prices = { basic: '79€/mois', premium: '199€/mois', excellence: '399€/mois' };
+    document.getElementById('finalPrice').textContent = prices[appData.selectedPlan];
+}
+
+function getManagerFeatures(sector) {
+    const features = {
+        restauration: ['Dashboard ventes', 'Gestion menu', 'Planning réservations', 'Suivi commandes', 'Analytics clients'],
+        commerce: ['Inventory management', 'Gestion commandes', 'CRM clients', 'Analytics ventes', 'Gestion promotions'],
+        beaute: ['Planning RDV', 'Gestion clients', 'Suivi prestations', 'Analytics revenus', 'Stock produits']
+    };
+    return features[sector] || features.restauration;
+}
+
+function getClientFeatures(sector) {
+    const features = {
+        restauration: ['Réservation table', 'Menu digital', 'Commande en ligne', 'Programme fidélité', 'Avis clients'],
+        commerce: ['Catalogue produits', 'Wishlist', 'Click & collect', 'Notifications', 'Programme VIP'],
+        beaute: ['Prise RDV', 'Profil beauté', 'Historique soins', 'Conseils personnalisés', 'Galerie']
+    };
+    return features[sector] || features.restauration;
+}
+
+function regenerateTemplate() {
+    document.getElementById('templateContent').innerHTML = `
+        <div class="loading h-full flex items-center justify-center">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                <p class="text-gray-600">Régénération...</p>
+            </div>
+        </div>
+    `;
+    
+    setTimeout(() => {
+        generateTemplateContent();
+    }, 2000);
+}
+
+function validateSolution() {
+    // Envoyer au CRM parent
     if (window.parent !== window) {
         window.parent.postMessage({
-            type: 'GENERATE_PREMIUM_TEMPLATE',
-            data: premiumData,
+            type: 'AGENT_SOLUTION_VALIDATED',
+            data: appData,
             timestamp: new Date().toISOString()
         }, '*');
     }
     
-    // Redirection vers le générateur de templates
-    window.location.href = 'generator.html?data=' + encodeURIComponent(JSON.stringify(premiumData));
+    alert('🎉 Solution validée ! Prospect conquis par votre template premium !');
 }
 
-// Event listeners pour validation temps réel
+// Event listeners
 document.addEventListener('DOMContentLoaded', function() {
-    // Étape 1
-    document.getElementById('mainSector').addEventListener('change', () => updateStepValidation(1));
-    document.getElementById('specialty').addEventListener('input', () => updateStepValidation(1));
+    // Validation en temps réel
+    ['mainSector', 'specialty', 'businessName', 'slogan'].forEach(id => {
+        document.getElementById(id).addEventListener('input', validateForm);
+        document.getElementById(id).addEventListener('change', validateForm);
+    });
     
-    // Étape 2  
-    document.getElementById('geoZone').addEventListener('change', () => updateStepValidation(2));
-    document.getElementById('clientBudget').addEventListener('change', () => updateStepValidation(2));
-    
-    // Étape 3
-    document.getElementById('businessName').addEventListener('input', () => updateStepValidation(3));
-    document.getElementById('slogan').addEventListener('input', () => updateStepValidation(3));
-    
-    console.log('🎯 Questionnaire Premium initialisé !');
+    console.log('🚀 Agent IA Premium initialisé !');
 });
 
 // Health check
 window.healthCheck = function() {
     return {
         status: 'healthy',
-        version: '2.0-premium',
-        timestamp: new Date().toISOString(),
-        currentStep: currentStep,
-        dataCollected: Object.keys(premiumData).filter(key => premiumData[key] && premiumData[key] !== '').length
+        version: '3.0-unified',
+        timestamp: new Date().toISOString()
     };
 };
 </script>
 
 </body>
 </html>
+                        
+                        <div class="p-4 bg-green-50 rounded-xl">
+                            <div class="font-semibold text-green-800">Style</div>
+                            <div class="text-green-600 capitalize" id="styleDisplay"></div>
+                        </div>
+                        
+                        <div class="p-4 bg-purple-50 rounded-xl">
+                            <div class="font-semibold text-purple-800">Plan</div>
+                            <div class="text-purple-600" id="planDisplay"></div>
+                        </div>
+
+                        <div class="p-4 bg-orange-50 rounded-xl">
+                            <div class="font-semibold text-orange-800">Clientèle</div>
+                            <div class="text-orange-600" id="targetDisplay"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-3">
+                        <button onclick="regenerateTemplate()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-4 rounded-xl font-semibold transition-all hover:shadow-lg">
+                            <i class="fas fa-sync-alt mr-2"></i>Régénérer
+                        </button>
+                        <button onclick="showApps()" class="w-full btn-premium">
+                            <i class="fas fa-arrow-right mr-2"></i>Voir les Apps
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Template Preview -->
+            <div class="lg:col-span-3">
+                <div class="premium-card">
+                    <div class="bg-gradient-to-r from-gray-800 to-gray-900 text-white p-4 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fas fa-eye mr-3"></i>
+                            <span class="font-semibold">Prévisualisation Template</span>
+                        </div>
+                        <div class="text-sm opacity-75">Qualité agence web</div>
+                    </div>
+                    
+                    <div id="templateContent" class="template-content">
+                        <!-- Template généré ici -->
+                        <div class="loading h-full flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                                <p class="text-gray-600">Génération en cours...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PHASE 3: APPLICATIONS -->
+<div id="apps-phase" class="phase">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+                🚀 Vos Applications Finales
+            </h1>
+            <p class="text-xl text-gray-600">Solution complète qui fait VENDRE !</p>
+        </div>
+
+        <!-- Solution Summary -->
+        <div class="premium-card p-8 mb-8 bg-gradient-to-r from-green-50 to-blue-50">
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Template Premium</h3>
+                    <p class="text-gray-600">Design sur-mesure professionnel</p>
+                </div>
+                <div>
+                    <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Apps Métier</h3>
+                    <p class="text-gray-600">Manager + Client synchronisés</p>
+                </div>
+                <div>
+                    <div class="w-20 h-20 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">ROI Garanti</h3>
+                    <p class="text-gray-600">+30% de clients en moyenne</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Apps -->
+        <div class="grid lg:grid-cols-2 gap-8 mb-8">
+            
+            <!-- Manager App -->
+            <div class="premium-card">
+                <div class="p-6 border-b bg-gradient-to-r from-blue-50 to-purple-50">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white mr-4">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent" id="managerAppName">Manager Pro</h3>
+                            <p class="text-gray-600">Interface de gestion complète</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-bold mb-4 flex items-center">
+                        <i class="fas fa-list-check mr-2 text-blue-600"></i>
+                        Fonctionnalités Manager :
+                    </h4>
+                    <div id="managerFeatures" class="space-y-3">
+                        <!-- Généré dynamiquement -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Client App -->
+            <div class="premium-card">
+                <div class="p-6 border-b bg-gradient-to-r from-green-50 to-blue-50">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-600 rounded-xl flex items-center justify-center text-white mr-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent" id="clientAppName">Client App</h3>
+                            <p class="text-gray-600">Experience client optimisée</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-bold mb-4 flex items-center">
+                        <i class="fas fa-heart mr-2 text-green-600"></i>
+                        Fonctionnalités Client :
+                    </h4>
+                    <div id="clientFeatures" class="space-y-3">
+                        <!-- Généré dynamiquement -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="premium-card p-8 bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-200">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent mb-4">
+                    <i class="fas fa-crown mr-3"></i>Votre Solution Prête !
+                </h2>
+                <div class="text-5xl font-black mb-4" id="finalPrice">199€/mois</div>
+                <p class="text-lg text-gray-600 mb-8">Investissement rentabilisé en 3 semaines</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-green-600">✅ Inclus :</h3>
+                        <ul class="text-left space-y-2 text-gray-700">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Template premium personnalisé</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>App Manager complète</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>App Client optimisée</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Hébergement sécurisé</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Support 7j/7</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-4 text-blue-600">📈 ROI Attendu :</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between p-3 bg-white rounded-lg">
+                                <span>Nouveaux clients/mois :</span>
+                                <span class="font-bold text-green-600">+25</span>
+                            </div>
+                            <div class="flex justify-between p-3 bg-white rounded-lg">
+                                <span>Augmentation CA :</span>
+                                <span class="font-bold text-blue-600">+30%</span>
+                            </div>
+                        </div>
