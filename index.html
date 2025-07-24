@@ -143,40 +143,45 @@
             
             <!-- Clientèle principale -->
             <div class="mb-8">
-                <label class="block text-sm font-semibold text-gray-700 mb-4">👥 Votre clientèle principale (choisissez 2 max)</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-4">👥 Votre clientèle principale (choisissez jusqu'à 3)</label>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button onclick="toggleTarget('local')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('local')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">🏠</div>
                         <div class="font-medium text-sm">Locale</div>
                     </button>
-                    <button onclick="toggleTarget('touriste')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('touriste')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">🧳</div>
                         <div class="font-medium text-sm">Touristes</div>
                     </button>
-                    <button onclick="toggleTarget('jeune')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('jeune')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">🎯</div>
                         <div class="font-medium text-sm">18-35 ans</div>
                     </button>
-                    <button onclick="toggleTarget('famille')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('famille')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">👨‍👩‍👧‍👦</div>
                         <div class="font-medium text-sm">Familles</div>
                     </button>
-                    <button onclick="toggleTarget('senior')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('senior')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">👴</div>
                         <div class="font-medium text-sm">Seniors</div>
                     </button>
-                    <button onclick="toggleTarget('pro')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('pro')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">💼</div>
                         <div class="font-medium text-sm">Pro/B2B</div>
                     </button>
-                    <button onclick="toggleTarget('luxe')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('luxe')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">💎</div>
                         <div class="font-medium text-sm">Luxe</div>
                     </button>
-                    <button onclick="toggleTarget('etudiants')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300">
+                    <button onclick="toggleTarget('etudiants')" class="target-btn p-4 border-2 border-gray-200 rounded-xl text-center hover:border-purple-300 transition-all">
                         <div class="text-2xl mb-2">🎓</div>
                         <div class="font-medium text-sm">Étudiants</div>
                     </button>
+                </div>
+                <div class="mt-3 text-center">
+                    <span class="text-sm text-gray-500">
+                        <span id="selectedTargetsCount">0</span>/3 cibles sélectionnées
+                    </span>
                 </div>
             </div>
             
@@ -571,14 +576,32 @@ function toggleTarget(target) {
     const index = premiumData.targetAudience.indexOf(target);
     const btn = event.target.closest('.target-btn');
     
-    if (index === -1 && premiumData.targetAudience.length < 2) {
+    if (index === -1 && premiumData.targetAudience.length < 3) { // Augmenté de 2 à 3 cibles max
         premiumData.targetAudience.push(target);
         btn.classList.add('selected');
     } else if (index !== -1) {
         premiumData.targetAudience.splice(index, 1);
         btn.classList.remove('selected');
+    } else if (premiumData.targetAudience.length >= 3) {
+        // Message si tentative de sélectionner plus de 3
+        showTemporaryMessage(btn, 'Maximum 3 cibles');
     }
+    
+    // Mettre à jour le compteur
+    document.getElementById('selectedTargetsCount').textContent = premiumData.targetAudience.length;
     updateStepValidation(2);
+}
+
+// Fonction pour afficher un message temporaire
+function showTemporaryMessage(element, message) {
+    const originalText = element.innerHTML;
+    element.innerHTML = `<div class="text-xs text-red-600">${message}</div>`;
+    element.classList.add('border-red-300', 'bg-red-50');
+    
+    setTimeout(() => {
+        element.innerHTML = originalText;
+        element.classList.remove('border-red-300', 'bg-red-50');
+    }, 2000);
 }
 
 function selectStyle(style) {
@@ -686,7 +709,8 @@ function generatePremiumTemplate() {
         }, '*');
     }
     
-    alert('🎉 Génération en cours du template premium ! Ceci va être MAGNIFIQUE !');
+    // Redirection vers le générateur de templates
+    window.location.href = 'generator.html?data=' + encodeURIComponent(JSON.stringify(premiumData));
 }
 
 // Event listeners pour validation temps réel
@@ -716,7 +740,6 @@ window.healthCheck = function() {
         dataCollected: Object.keys(premiumData).filter(key => premiumData[key] && premiumData[key] !== '').length
     };
 };
-window.location.href = 'generator.html?data=' + encodeURIComponent(JSON.stringify(premiumData));    
 </script>
 
 </body>
