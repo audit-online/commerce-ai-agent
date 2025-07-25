@@ -80,14 +80,7 @@ class RestaurantTemplateApp {
         });
     }
 
-    bindPhase3Events() {
-        // Configuration des options
-        const generateBtn = document.getElementById('generate-template');
-        if (generateBtn) {
-            generateBtn.addEventListener('click', () => {
-                this.generateTemplate();
-            });
-        }
+   
 
     bindPhase3Events() {
         // Configuration des options
