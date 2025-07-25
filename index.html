@@ -3,181 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Générateur Templates Métier Pro</title>
+    <title>Template Restaurant Pro - Générateur d'Applications</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- PHASE 1: Sélection métier -->
+    <!-- PHASE 1: Sélection du secteur d'activité -->
     <div id="phase1" class="phase active">
         <div class="container">
-            <h1>🎯 Générateur Templates Métier Pro</h1>
-            <p class="subtitle">Choisissez votre secteur d'activité</p>
+            <h1>🍽️ Template Restaurant Professionnel</h1>
+            <p class="subtitle">Créez votre application restaurant en quelques clics</p>
             
-            <div class="metier-grid">
-                <div class="metier-card" data-metier="restaurant">
-                    <div class="metier-icon">🍽️</div>
-                    <h3>Restaurant</h3>
-                    <p>Gastronomie & Restauration</p>
+            <div class="sector-selection">
+                <div class="sector-card active" data-sector="restaurant">
+                    <div class="sector-icon">🍽️</div>
+                    <h3>Restaurant Traditionnel</h3>
+                    <p>Application complète pour restaurant gastronomique</p>
+                    <div class="sector-features">
+                        <span class="feature-tag">Menu interactif</span>
+                        <span class="feature-tag">Réservations</span>
+                        <span class="feature-tag">Galerie</span>
+                        <span class="feature-tag">Avis clients</span>
+                    </div>
                 </div>
-                <div class="metier-card" data-metier="pizzeria">
-                    <div class="metier-icon">🍕</div>
-                    <h3>Pizzeria</h3>
-                    <p>Pizza & Fast Food</p>
+                
+                <div class="coming-soon-cards">
+                    <div class="sector-card coming-soon">
+                        <div class="sector-icon">🍕</div>
+                        <h3>Pizzeria</h3>
+                        <span class="coming-soon-badge">Bientôt</span>
+                    </div>
+                    <div class="sector-card coming-soon">
+                        <div class="sector-icon">☕</div>
+                        <h3>Café / Brasserie</h3>
+                        <span class="coming-soon-badge">Bientôt</span>
+                    </div>
+                    <div class="sector-card coming-soon">
+                        <div class="sector-icon">🍹</div>
+                        <h3>Bar à Cocktails</h3>
+                        <span class="coming-soon-badge">Bientôt</span>
+                    </div>
                 </div>
-                <div class="metier-card" data-metier="coiffeur">
-                    <div class="metier-icon">✂️</div>
-                    <h3>Coiffeur</h3>
-                    <p>Beauté & Coiffure</p>
-                </div>
-                <div class="metier-card" data-metier="garage">
-                    <div class="metier-icon">🔧</div>
-                    <h3>Garage</h3>
-                    <p>Automobile & Mécanique</p>
-                </div>
-                <div class="metier-card" data-metier="boulangerie">
-                    <div class="metier-icon">🥖</div>
-                    <h3>Boulangerie</h3>
-                    <p>Pain & Pâtisseries</p>
-                </div>
-                <div class="metier-card" data-metier="fleuriste">
-                    <div class="metier-icon">🌸</div>
-                    <h3>Fleuriste</h3>
-                    <p>Fleurs & Arrangements</p>
-                </div>
-                <div class="metier-card" data-metier="photographe">
-                    <div class="metier-icon">📸</div>
-                    <h3>Photographe</h3>
-                    <p>Photos & Vidéos</p>
-                </div>
-                <div class="metier-card" data-metier="plombier">
-                    <div class="metier-icon">🚿</div>
-                    <h3>Plombier</h3>
-                    <p>Plomberie & Sanitaire</p>
-                </div>
-                <div class="metier-card" data-metier="electricien">
-                    <div class="metier-icon">⚡</div>
-                    <h3>Électricien</h3>
-                    <p>Électricité & Installation</p>
-                </div>
-                <div class="metier-card" data-metier="cafe">
-                    <div class="metier-icon">☕</div>
-                    <h3>Café</h3>
-                    <p>Café & Brunch</p>
-                </div>
-                <div class="metier-card" data-metier="bar">
-                    <div class="metier-icon">🍹</div>
-                    <h3>Bar</h3>
-                    <p>Cocktails & Boissons</p>
-                </div>
-                <div class="metier-card" data-metier="boutique-chaussures">
-                    <div class="metier-icon">👟</div>
-                    <h3>Boutique Chaussures</h3>
-                    <p>Chaussures & Accessoires</p>
-                </div>
-                <div class="metier-card" data-metier="vape-shop">
-                    <div class="metier-icon">💨</div>
-                    <h3>Vape Shop</h3>
-                    <p>Cigarettes électroniques</p>
-                </div>
-                <div class="metier-card" data-metier="onglerie">
-                    <div class="metier-icon">💅</div>
-                    <h3>Onglerie</h3>
-                    <p>Manucure & Beauté des mains</p>
-                </div>
-                <div class="metier-card" data-metier="accessoires-mode">
-                    <div class="metier-icon">👜</div>
-                    <h3>Accessoires Mode</h3>
-                    <p>Sacs & Bijoux</p>
-                </div>
-                <div class="metier-card" data-metier="accessoires-maison">
-                    <div class="metier-icon">🏠</div>
-                    <h3>Accessoires Maison</h3>
-                    <p>Déco & Art de vivre</p>
-                </div>
-                <div class="metier-card" data-metier="cordonnier">
-                    <div class="metier-icon">👞</div>
-                    <h3>Cordonnier</h3>
-                    <p>Réparation & Entretien chaussures</p>
-                </div>
+            </div>
+            
+            <div class="action-center">
+                <button id="continue-btn" class="btn-primary large">
+                    Continuer avec Restaurant Traditionnel
+                    <span class="btn-arrow">→</span>
+                </button>
             </div>
         </div>
     </div>
 
-    <!-- PHASE 2: Plans tarifaires -->
+    <!-- PHASE 2: Choix du plan tarifaire -->
     <div id="phase2" class="phase">
         <div class="container">
-            <h2>💎 Choisissez votre plan</h2>
-            <div class="back-btn" onclick="showPhase('phase1')">← Retour</div>
+            <div class="phase-header">
+                <div class="back-btn" onclick="showPhase('phase1')">← Retour</div>
+                <h2>💎 Choisissez votre formule</h2>
+                <p class="phase-subtitle">Plans adaptés à votre budget et vos besoins</p>
+            </div>
             
-            <div class="plans-grid">
+            <div class="plans-comparison">
                 <div class="plan-card basic" data-plan="basic">
-                    <div class="plan-badge">BASIC</div>
-                    <div class="plan-price">39€</div>
-                    <div class="plan-features">
-                        <div class="included">✅ 5 options incluses</div>
-                        <div class="choice">🎯 3 options au choix</div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">ESSENTIEL</h3>
+                        <div class="plan-price">
+                            <span class="currency">€</span>
+                            <span class="amount">39</span>
+                            <span class="period">HT</span>
+                        </div>
+                        <p class="plan-description">Parfait pour commencer</p>
                     </div>
-                    <button class="plan-btn">Choisir Basic</button>
+                    <div class="plan-features">
+                        <div class="feature-section">
+                            <h4>✅ Inclus (5 sections)</h4>
+                            <ul>
+                                <li>Header professionnel</li>
+                                <li>Page d'accueil</li>
+                                <li>Menu/Services</li>
+                                <li>À propos</li>
+                                <li>Contact & réservation</li>
+                            </ul>
+                        </div>
+                        <div class="feature-section optional">
+                            <h4>🎯 Options (3 au choix)</h4>
+                            <ul>
+                                <li>Galerie photos</li>
+                                <li>Témoignages clients</li>
+                                <li>Grille tarifaire</li>
+                                <li>Blog/Actualités</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="plan-btn">Choisir Essentiel</button>
                 </div>
                 
                 <div class="plan-card premium popular" data-plan="premium">
-                    <div class="plan-badge">PREMIUM</div>
-                    <div class="popular-tag">POPULAIRE</div>
-                    <div class="plan-price">79€</div>
+                    <div class="popular-banner">Le plus choisi</div>
+                    <div class="plan-header">
+                        <h3 class="plan-name">PREMIUM</h3>
+                        <div class="plan-price">
+                            <span class="currency">€</span>
+                            <span class="amount">79</span>
+                            <span class="period">HT</span>
+                        </div>
+                        <p class="plan-description">Solution complète</p>
+                    </div>
                     <div class="plan-features">
-                        <div class="included">✅ 10 options incluses</div>
-                        <div class="choice">🎯 5 options au choix</div>
+                        <div class="feature-section">
+                            <h4>✅ Toutes les sections incluses</h4>
+                            <ul>
+                                <li>Toutes les sections Essentiel</li>
+                                <li>Galerie photos avancée</li>
+                                <li>Système de témoignages</li>
+                                <li>Grille tarifaire complète</li>
+                                <li>Blog intégré</li>
+                                <li>Formulaires avancés</li>
+                            </ul>
+                        </div>
+                        <div class="feature-section bonus">
+                            <h4>🚀 Bonus Premium</h4>
+                            <ul>
+                                <li>Design personnalisable</li>
+                                <li>Animations premium</li>
+                                <li>Support prioritaire</li>
+                            </ul>
+                        </div>
                     </div>
                     <button class="plan-btn">Choisir Premium</button>
                 </div>
                 
-                <div class="plan-card pro" data-plan="pro">
-                    <div class="plan-badge">PRO</div>
-                    <div class="plan-price">129€</div>
-                    <div class="plan-features">
-                        <div class="included">✅ TOUTES options incluses</div>
-                        <div class="choice">🚀 Accès complet</div>
+                <div class="plan-card enterprise" data-plan="enterprise">
+                    <div class="plan-header">
+                        <h3 class="plan-name">ENTERPRISE</h3>
+                        <div class="plan-price">
+                            <span class="currency">€</span>
+                            <span class="amount">129</span>
+                            <span class="period">HT</span>
+                        </div>
+                        <p class="plan-description">Solution sur-mesure</p>
                     </div>
-                    <button class="plan-btn">Choisir Pro</button>
+                    <div class="plan-features">
+                        <div class="feature-section">
+                            <h4>✅ Tout Premium +</h4>
+                            <ul>
+                                <li>Accès à toutes les fonctionnalités</li>
+                                <li>Template Manager avancé</li>
+                                <li>Multi-langues</li>
+                                <li>Intégrations externes</li>
+                                <li>Analytics avancés</li>
+                            </ul>
+                        </div>
+                        <div class="feature-section enterprise-bonus">
+                            <h4>👑 Avantages Enterprise</h4>
+                            <ul>
+                                <li>Code source fourni</li>
+                                <li>Personnalisation illimitée</li>
+                                <li>Support dédié 24/7</li>
+                                <li>Formation incluse</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="plan-btn">Choisir Enterprise</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- PHASE 3: Configuration -->
+    <!-- PHASE 3: Configuration des options -->
     <div id="phase3" class="phase">
         <div class="container">
-            <h2>⚙️ Configuration</h2>
-            <div class="back-btn" onclick="showPhase('phase2')">← Retour</div>
-            
-            <div class="config-section">
-                <h3>Options disponibles pour votre plan <span id="current-plan"></span></h3>
-                <div id="options-container"></div>
+            <div class="phase-header">
+                <div class="back-btn" onclick="showPhase('phase2')">← Retour</div>
+                <h2>⚙️ Configuration de votre template</h2>
+                <p class="phase-subtitle">Personnalisez votre application restaurant</p>
             </div>
             
-            <button id="generate-btn" class="generate-btn">🚀 Générer le Template</button>
+            <div class="config-layout">
+                <div class="config-sidebar">
+                    <div class="plan-summary">
+                        <h3>Plan sélectionné</h3>
+                        <div class="selected-plan">
+                            <span id="selected-plan-name">PREMIUM</span>
+                            <span id="selected-plan-price">79€ HT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="preview-actions">
+                        <button id="preview-template" class="btn-secondary">
+                            👁️ Aperçu en temps réel
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="config-main">
+                    <div class="config-section">
+                        <h3>🏗️ Sections incluses</h3>
+                        <div id="included-options" class="options-grid">
+                            <!-- Généré dynamiquement -->
+                        </div>
+                    </div>
+                    
+                    <div class="config-section" id="optional-section">
+                        <h3>🎯 Sections optionnelles</h3>
+                        <p class="section-description">Choisissez les sections supplémentaires pour votre application</p>
+                        <div id="optional-options" class="options-grid">
+                            <!-- Généré dynamiquement -->
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <h3>🎨 Personnalisation</h3>
+                        <div class="customization-options">
+                            <div class="custom-option">
+                                <label for="restaurant-name">Nom du restaurant</label>
+                                <input type="text" id="restaurant-name" placeholder="Le Restaurant Traditionnel" class="form-input">
+                            </div>
+                            <div class="custom-option">
+                                <label for="restaurant-description">Description courte</label>
+                                <textarea id="restaurant-description" placeholder="Votre restaurant traditionnel à la portée de tous" class="form-textarea"></textarea>
+                            </div>
+                            <div class="custom-option">
+                                <label for="color-scheme">Palette de couleurs</label>
+                                <div class="color-schemes">
+                                    <div class="color-scheme active" data-scheme="classic">
+                                        <div class="color-preview classic"></div>
+                                        <span>Classique</span>
+                                    </div>
+                                    <div class="color-scheme" data-scheme="modern">
+                                        <div class="color-preview modern"></div>
+                                        <span>Moderne</span>
+                                    </div>
+                                    <div class="color-scheme" data-scheme="elegant">
+                                        <div class="color-preview elegant"></div>
+                                        <span>Élégant</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-center">
+                <button id="generate-template" class="btn-primary large">
+                    🚀 Générer mon application
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- PHASE 4: Résultat -->
+    <!-- PHASE 4: Template généré et options -->
     <div id="phase4" class="phase">
         <div class="container">
-            <div class="result-header">
-                <h2>🎉 Votre Template</h2>
+            <div class="phase-header">
                 <div class="back-btn" onclick="showPhase('phase3')">← Retour</div>
+                <h2>🎉 Votre application est prête !</h2>
+                <p class="phase-subtitle">Découvrez votre template restaurant professionnel</p>
             </div>
             
-            <div class="result-actions">
-                <button id="preview-btn" class="action-btn primary">👁️ Aperçu</button>
-                <button id="download-btn" class="action-btn">📥 Télécharger</button>
-                <button id="new-template-btn" class="action-btn">🔄 Nouveau Template</button>
+            <div class="result-layout">
+                <div class="result-sidebar">
+                    <div class="result-summary">
+                        <h3>📋 Résumé</h3>
+                        <div class="summary-item">
+                            <span class="label">Type :</span>
+                            <span class="value">Restaurant Traditionnel</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Plan :</span>
+                            <span class="value" id="final-plan">Premium</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Sections :</span>
+                            <span class="value" id="sections-count">8 sections</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Prix :</span>
+                            <span class="value price" id="final-price">79€ HT</span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button id="download-template" class="btn-primary">
+                            📥 Télécharger
+                        </button>
+                        <button id="preview-fullscreen" class="btn-secondary">
+                            🔍 Plein écran
+                        </button>
+                        <button id="customize-more" class="btn-outline">
+                            ✏️ Modifier
+                        </button>
+                        <button id="start-new" class="btn-outline">
+                            🔄 Nouveau template
+                        </button>
+                    </div>
+                    
+                    <div class="next-steps">
+                        <h4>📈 Étapes suivantes</h4>
+                        <ul>
+                            <li>Téléchargez votre template</li>
+                            <li>Personnalisez le contenu</li>
+                            <li>Ajoutez vos images</li>
+                            <li>Mettez en ligne</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="result-main">
+                    <div class="template-viewer">
+                        <div class="viewer-header">
+                            <div class="viewer-controls">
+                                <button class="view-mode active" data-mode="desktop">🖥️ Desktop</button>
+                                <button class="view-mode" data-mode="tablet">📱 Tablet</button>
+                                <button class="view-mode" data-mode="mobile">📱 Mobile</button>
+                            </div>
+                            <div class="viewer-zoom">
+                                <button id="zoom-out">−</button>
+                                <span id="zoom-level">100%</span>
+                                <button id="zoom-in">+</button>
+                            </div>
+                        </div>
+                        <div class="template-frame">
+                            <div id="generated-template" class="template-container">
+                                <!-- Le template généré apparaîtra ici -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div id="template-container"></div>
         </div>
     </div>
 
-    <script src="template.js"></script>
-    <script src="main.js"></script>
+    <!-- Scripts -->
+    <script src="js/restaurant-template.js"></script>
+    <script src="js/template-manager.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
